@@ -5,6 +5,8 @@
  */
 package compilador;
 
+import java.util.Arrays;
+
 /**
  *
  * @author MalvinJazz
@@ -16,7 +18,7 @@ public class Compilador {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("prueba de colaboracion");
+        System.out.println(Arrays.toString(args));
     }
     
 }
