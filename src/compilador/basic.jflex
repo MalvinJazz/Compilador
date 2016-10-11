@@ -246,5 +246,5 @@ TokenOperacion = TokenSuma | TokenResta | TokenMulti | TokenDiv | TokenMod | Tok
 \r|\n|\r\n          {}
 {TokenEspacio}      {}
 .                   {
-                        System.out.println("caracter no valido:[" + yyline + "," + yycolumn + "]" + yytext());
+                        System.err.println("A lexical error, it could be an invalid or unacceptable character by the language at: " + yyline + "," + yycolumn + " ..: " + yytext());
                     }
