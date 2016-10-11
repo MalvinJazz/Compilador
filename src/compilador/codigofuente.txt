@@ -1,1 +1,19 @@
-FUNCION NUMERO X24
+FUNCION NUMERO esImpar (numero):
+codigo:
+    si ( num % 2 ) ENTONCES:
+        retornar 1;
+    SINO :
+        retornar 0;
+
+//area de declaracion ed funcion de carga principal
+FUNCION NUMERO principal();
+variables:
+    numero a;
+    numera x;
+codigo:
+    a = 1;
+    si ( esImpar(a) ) entonces:
+        escribir "El numero encontrado es impar:";
+    sino:
+        escribir "el numero encontrado no es par";
+    retornar 0;
