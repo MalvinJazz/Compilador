@@ -7,7 +7,7 @@ codigo:
 
 //area de declaracion ed funcion de carga principal
 FUNCION NUMERO principal();
-variables:
+variables :
     numero a;
     numera x;
 codigo:
