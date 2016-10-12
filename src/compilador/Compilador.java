@@ -18,7 +18,7 @@
 package compilador;
 
 import java.util.Arrays;
-
+import java.util.Stack;
 
 import java.io.File;
 import java.io.FileReader;
@@ -39,15 +39,26 @@ public class Compilador {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println(Arrays.toString(args));
         FileReader archivo;
+        //Stack<String> argumentos = new Stack<>();
+        
         try {
+            
+            if(args[0].equalsIgnoreCase("compilar")){
+                if(args[1].endsWith(".led")){
+                    archivo = new FileReader(args[1]);
+                    AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
+                    analizadorLexico.yylex();
+                    archivo.close();
+                }else
+                    System.out.println("No se entiende la instruccion: "+args[1]);
+            }else
+                System.out.println("No se entiende la instruccion: "+args[0]);
+            
             //Se usará "código fuente" como archivo de entrada, para tomarlo como lenguaje a tratar en el compilador.
             archivo = new FileReader("src" + File.separator + "compilador" + File.separator + "codigofuente.txt");
             //Para llamar a Analizador Léxico se utilizará 'analizadorLexico
-            AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
-            analizadorLexico.yylex();
-            archivo.close();
+
             
         } catch (IOException e) {
             Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, e);
