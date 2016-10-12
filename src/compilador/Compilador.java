@@ -78,7 +78,8 @@ public class Compilador {
 
             
         } catch (IOException e) {
-            Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, e);
+            System.err.println("Error al leer el archivo especificado.");
         }
         
     }
