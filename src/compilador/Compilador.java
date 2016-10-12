@@ -40,23 +40,40 @@ public class Compilador {
     public static void main(String[] args) {
         // TODO code application logic here
         FileReader archivo;
-        //Stack<String> argumentos = new Stack<>();
+        Stack<String> argumentos = new Stack<>();
         
         try {
             
-            if(args[0].equalsIgnoreCase("compilar")){
-                if(args[1].endsWith(".led")){
-                    archivo = new FileReader(args[1]);
-                    AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
-                    analizadorLexico.yylex();
-                    archivo.close();
+            for(int i = args.length - 1; i>-1; i--){
+                argumentos.push(args[i]);
+            }
+            
+            if(!argumentos.isEmpty()){
+                
+                if(argumentos.pop().equalsIgnoreCase("compilar")){
+                    
+                    if(!argumentos.isEmpty()){
+                        String pop = argumentos.pop();
+                    
+                        if(pop.toLowerCase().endsWith(".led")){
+
+                            archivo = new FileReader(pop);
+                            AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
+                            analizadorLexico.yylex();
+                            archivo.close();
+
+                        }else
+                            System.out.println("El archivo no es valido.");
+                    }else
+                        System.out.println("No se envio ningun archivo.");
                 }else
-                    System.out.println("No se entiende la instruccion: "+args[1]);
+                    System.out.println("No se entiende la instruccion");
+                
             }else
-                System.out.println("No se entiende la instruccion: "+args[0]);
+                System.out.println("No se enviaron instrucciones.");
             
             //Se usará "código fuente" como archivo de entrada, para tomarlo como lenguaje a tratar en el compilador.
-            archivo = new FileReader("src" + File.separator + "compilador" + File.separator + "codigofuente.txt");
+            //archivo = new FileReader("src" + File.separator + "compilador" + File.separator + "codigofuente.txt");
             //Para llamar a Analizador Léxico se utilizará 'analizadorLexico
 
             
