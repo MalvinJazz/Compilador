@@ -17,14 +17,14 @@
 
 package compilador;
 
+import java.util.Arrays;
+import java.util.Stack;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-
 
 /**
  *
@@ -38,17 +38,48 @@ public class Compilador {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        // TODO code application logic here
         FileReader archivo;
+        Stack<String> argumentos = new Stack<>();
+        
         try {
+            
+            for(int i = args.length - 1; i>-1; i--){
+                argumentos.push(args[i]);
+            }
+            
+            if(!argumentos.isEmpty()){
+                
+                if(argumentos.pop().equalsIgnoreCase("compilar")){
+                    
+                    if(!argumentos.isEmpty()){
+                        String pop = argumentos.pop();
+                    
+                        if(pop.toLowerCase().endsWith(".led")){
+
+                            archivo = new FileReader(pop);
+                            AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
+                            analizadorLexico.yylex();
+                            archivo.close();
+
+                        }else
+                            System.out.println("El archivo no es valido.");
+                    }else
+                        System.out.println("No se envio ningun archivo.");
+                }else
+                    System.out.println("No se entiende la instruccion");
+                
+            }else
+                System.out.println("No se enviaron instrucciones.");
+            
             //Se usará "código fuente" como archivo de entrada, para tomarlo como lenguaje a tratar en el compilador.
-            archivo = new FileReader("src" + File.separator + "compilador" + File.separator + "codigofuente.txt");
+            //archivo = new FileReader("src" + File.separator + "compilador" + File.separator + "codigofuente.txt");
             //Para llamar a Analizador Léxico se utilizará 'analizadorLexico
-            AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
-            analizadorLexico.yylex();
-            archivo.close();
+
             
         } catch (IOException e) {
-            Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, e);
+            System.err.println("Error al leer el archivo especificado.");
         }
         
     }
