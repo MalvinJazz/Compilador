@@ -255,5 +255,5 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
 \r|\n|\r\n          {}
 {TokenEspacio}      {}
 .                   {
-                        System.err.println("A lexical error, it could be an invalid or unacceptable character by the language at: " + yyline + "," + yycolumn + " ..: " + yytext());
+                          throw new Error("A lexical error, it could be an invalid or unacceptable character by the language at: " + yyline + "," + yycolumn + " ..: " + yytext());  
                     }

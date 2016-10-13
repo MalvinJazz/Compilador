@@ -952,7 +952,8 @@ class AnalizadorLexico {
             }
           case 49: break;
           case 19: 
-            { System.out.println("Fin comentario largo.");
+            { System.out.println(yytext());
+    System.out.println("Fin comentario largo.");
     yybegin(YYINITIAL);
             }
           case 50: break;
