@@ -72,6 +72,8 @@ TokenIdentacion = [\t]|[ ]{4}
 
 //Externos
 TokenComentarios = "//".*
+InicioComentario = [/][*]
+FinComentario = [^*]*[*][/]
 TokenEspacio = " "
 TokenSout = {TokenComillas}.*{TokenComillas}
 
@@ -128,17 +130,24 @@ TokenMod = "%"
 TokenExp = "^"
 TokenInc = "INCREMENTAR" | "incrementar"
 TokenDec = "DECREMENTAR" | "decrementar"
-TokenOperacion = TokenSuma | TokenResta | TokenMulti | TokenDiv | TokenMod | TokenExp
+TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {TokenMod} | {TokenExp}
 
 
-
-//Todos los estados tienen el prefijo Ex de ser Excluyentes y solamente E al ser incluyentes
-//Estado para reconocer la declaracion de una funcion
-%xstate ExTipo 
-//Estado para identificador
-%xstate ExIdentificador 
+%xstates ExTipo 
+%xstates ExIdentificador 
+%xstate C
 
 %%
+{InicioComentario}  {
+                     System.out.println("Inicio comentario largo:\n");
+                     yybegin(C);
+                    }
+
+<C> {FinComentario} {
+    System.out.println(yytext());
+    System.out.println("Fin comentario largo.");
+    yybegin(YYINITIAL);
+}
 
 {TokenFunction}     {
                         System.out.println("Declaracion de Funcion : " + yytext());

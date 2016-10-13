@@ -2,12 +2,17 @@ FUNCION NUMERO esImpar (numero):
 variables:
     numero a;
 codigo:
+    @
     si ( num % 2 ) ENTONCES:
         retornar 1;
     SINO :
         retornar 0;
 
 //area de declaracion ed funcion de carga principal
+/*
+sakjdaslkfjkasd
+
+*/
 FUNCION NUMERO principal();
 variables :
     numero a;
