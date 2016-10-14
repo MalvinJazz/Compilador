@@ -27,6 +27,8 @@ import java.util.ArrayList;
 
     private static ArrayList<String> tokenList = new ArrayList<>();
     static ArrayList<Tok> tabla = new ArrayList<>();
+    static ArrayList<String> compiladoSalida = new ArrayList<>();
+    static String encabezado = "Primer proyecto de compiladores, Ingenieria en Informatica y sistemas, Universidad Rafael Landivar\ndesarrollado por los estudiantes Melvin Juarez y Carlos Garcia. Se utilizo JFlex para la generacion \nde dicho analizador. \n\n";
 
         /* Obtenemos el listado de Tokens para armar, por aparte, una tabla de
         *   simbolos mas facil de recorrer para una clasificacion adecuada, de 
@@ -42,8 +44,15 @@ import java.util.ArrayList;
     private void writeOutputFile() throws IOException {
         String filename = "file.out";
         BufferedWriter out = new BufferedWriter(new FileWriter(filename));
-        for (String s:this.tokenList) {
-            out.write(s + "\n");
+        out.write(encabezado);
+        out.write("\t\t\t CODIGO COMPILADO \n\n");
+        for (int i = 0; i < compiladoSalida.size(); i++) {
+            out.write(compiladoSalida.get(i) + "\n");
+        } 
+        out.write("\t\t\t TABLA DE SIMBOLOS \n\n");
+        for (Tok argumento: this.tabla)
+        {
+            out.write(argumento.getTipo() + "\t\t\t" + argumento.getToken() + "\t\t\t" + "[" + argumento.getFila() + "," + argumento.getColumna() + "]" + "\n");
         }
         out.close();
     }
@@ -174,168 +183,234 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
 {TokenFunction}     {
                         tokenList.add("Function#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Declaracion de Funcion : " + yytext());
+                        String compilado = "Declaracion de Funcion : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {Decimal}           {
                         tokenList.add("Number#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Numero : " + yytext());
+                        String compilado = "Numero : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenSout}         {
                         tokenList.add("SystemPrint#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Salida de sistema: " + yytext());
+                        String compilado = "Salida de sistema: " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenTipos}        {
                         tokenList.add("Type#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Tipo de dato : " + yytext());
+                        String compilado = "Tipo de dato : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenReturn}       {
                         tokenList.add("Return#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Return : " + yytext());
+                        String compilado = "Return : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenEVariables}   {
                         tokenList.add("Header#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Encabezado de variables : " + yytext());
+                        String compilado = "Encabezado de variables : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenECodigo}      {
                         tokenList.add("Header#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Encabezado de codigo : " + yytext());
+                        String compilado = "Encabezado de codigo : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenEFile}        {
                         tokenList.add("Header#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Encabezado de archivo : " + yytext());
+                        String compilado = "Encabezado de archivo : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenPrint}        {
                         tokenList.add("SystemPrint#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Escribir en pantalla : " + yytext());
+                        String compilado = "Escribir en pantalla : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenOpen}         {
                         tokenList.add("Instruction#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Abrir archivo : " + yytext());
+                        String compilado = "Abrir archivo : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenIf}           {
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Condicion : " + yytext());
+                        String compilado = "Condicion : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenThen}         {
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Condicion : " + yytext());
+                        String compilado = "Condicion : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenElse}         {
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Condicion : " + yytext());
+                        String compilado = "Condicion : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenFor}          {
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Ciclo : " + yytext());
+                        String compilado = "Ciclo : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenWhile}        {
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Ciclo : " + yytext());
+                        String compilado = "Ciclo : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenIterar}       {
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Ciclo : " + yytext());
+                        String compilado = "Ciclo : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenParaCada}     {
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Foreach : " + yytext());
+                        String compilado = "Foreach : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenAnd}          {
                         tokenList.add("LogicalOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Operador Logico : " + yytext());
+                        String compilado = "Operador Logico : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenOr}           {
                         tokenList.add("LogicalOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Operador Logico : " + yytext());
+                        String compilado = "Operador Logico : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenAsignacion}   {
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Asignacion : " + yytext());
+                        String compilado = "Asignacion : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenComas}        {
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Comas : " + yytext());
+                        String compilado = "Comas : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenOperacion}    {
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Operacion basica : " + yytext());
+                        String compilado = "Operacion basica : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenMod}          {
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Modulo : " + yytext());
+                        String compilado = "Modulo : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenExp}          {
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Exponente : " + yytext());
+                        String compilado = "Exponente : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenInc}          {
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Incrementar en uno : " + yytext());
+                        String compilado = "Incrementar en uno : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenDec}          {
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Decrementar en uno : " + yytext());
+                        String compilado = "Decrementar en uno : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {ParenL}            {
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Apertura de parentesis : " + yytext());
+                        String compilado = "Apertura de parentesis : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {ParenR}            {
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Clausura de parentesis : " + yytext());
+                        String compilado = "Clausura de parentesis : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenFinLinea}     {
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Fin de linea : " + yytext());
+                        String compilado = "Fin de linea : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenComillas}     {
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Comillas : " + yytext());
+                        String compilado = "Comillas : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenDosPuntos}    {
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Dos Puntos : " + yytext());
+                        String compilado = "Dos Puntos : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 
 {TokenIdentacion}   {
                         tokenList.add("Indention#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Identacion : " + yytext());
+                        String compilado = "Identacion : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {TokenComentarios}  {
                         tokenList.add("Comment#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
-                        System.out.println("Comentarios : " + yytext());
+                        String compilado = "Comentarios : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
                     }
 {Identificador}     {
                         boolean x = false;
@@ -347,22 +422,28 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
                         }
                         if (x == true)
                         {
-                            int cont = tabla.size();
-                            boolean bandera = false;
-                            while ((bandera == false) && (cont>0))
+                            if ("Type".equals(tabla.get(tabla.size()-1).getTipo()))
                             {
-                                
+                                throw new Error("WARNING! Probably the object have been declarated previously: " + "\n"   
+                                                + " TOKEN ERROR..: " + yytext() + " at: [" + yyline + "," + yycolumn + "]");
                             }
-                            System.out.println("WARNING! Probably the object have been declarated previously: " + yytext());
-                            tokenList.add("Identifier#" + yytext() + "#" + yyline + "#" + yycolumn );
-                            addToTable();
-                            System.out.println("Identificador : " + yytext());
+                            else
+                            {
+                                tokenList.add("Identifier#" + yytext() + "#" + yyline + "#" + yycolumn );
+                                addToTable();
+                                String compilado = "Identificador : " + yytext();
+                                compiladoSalida.add(compilado);
+                                System.out.println(compilado);
+                            }
+                                               
                         }
                         else
                         {
                             tokenList.add("Identifier#" + yytext() + "#" + yyline + "#" + yycolumn );
                             addToTable();
-                            System.out.println("Identificador : " + yytext());
+                            String compilado = "Identificador : " + yytext();
+                            compiladoSalida.add(compilado);
+                            System.out.println(compilado);
                         }
                     }
 \r|\n|\r\n          {}

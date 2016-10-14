@@ -2,10 +2,10 @@ FUNCION NUMERO esImpar (numero):
 variables:
     numero a;
 codigo:
-    si ( num % 2 ) ENTONCES:
-        retornar 1;
+    si ( num % 2 ) ENTONCES:	
 	a++;
-	numero a;
+        retornar 1;
+
     SINO :
         retornar 0;
 
@@ -16,7 +16,6 @@ sakjdaslkfjkasd
 */
 FUNCION NUMERO principal();
 variables :
-    numero a;
     numera x;
 codigo:
     a = 1;
