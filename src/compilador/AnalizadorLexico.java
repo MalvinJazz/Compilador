@@ -919,10 +919,29 @@ class AnalizadorLexico {
                         }
                         if (x == true)
                         {
-                            System.out.println("Waaaaaaaaaaaaaaaaaaaaaaarning");
-                            tokenList.add("Identifier#" + yytext() + "#" + yyline + "#" + yycolumn );
-                            addToTable();
-                            System.out.println("Identificador : " + yytext());
+                            int cont = tabla.size();
+                            boolean bandera = false;
+                            while ((bandera == false) && (cont>0))
+                            {
+                                if (yytext().equals(tabla.get(cont-1).getToken()))
+                                {
+                                    cont--;
+                                    bandera = true;
+                                }
+                                cont--;
+                            }
+                            System.out.println(tabla.get(cont).getTipo());
+                            if ("Type".equals(tabla.get(cont).getTipo()))
+                            {
+                                throw new Error("WARNING! Probably the object have been declarated previously: " + yytext());
+                            }
+                            else
+                            {
+                                tokenList.add("Identifier#" + yytext() + "#" + yyline + "#" + yycolumn );
+                                addToTable();
+                                System.out.println("Identificador : " + yytext());
+                            }
+                                               
                         }
                         else
                         {
