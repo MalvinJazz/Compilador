@@ -2,6 +2,94 @@ Primer proyecto de compiladores, Ingenieria en Informatica y sistemas, Universid
 desarrollado por los estudiantes Melvin Juarez y Carlos Garcia. Se utilizo JFlex para la generacion 
 de dicho analizador. 
 
+			 CODIGO COMPILADO 
+
+Declaracion de Funcion : FUNCION
+Tipo de dato : NUMERO
+Identificador : esImpar
+Apertura de parentesis : (
+Tipo de dato : numero
+Clausura de parentesis : )
+Dos Puntos : :
+Encabezado de variables : variables:
+Identacion :     
+Tipo de dato : numero
+Identificador : a
+Fin de linea : ;
+Encabezado de codigo : codigo:
+Identacion :     
+Condicion : si
+Apertura de parentesis : (
+Identificador : num
+Operacion basica : %
+Numero : 2
+Clausura de parentesis : )
+Condicion : ENTONCES:
+Identacion : 	
+Identacion : 	
+Identificador : a
+Operacion basica : +
+Operacion basica : +
+Fin de linea : ;
+Identacion :     
+Identacion :     
+Return : retornar
+Numero : 1
+Fin de linea : ;
+Identacion :     
+Condicion : SINO
+Dos Puntos : :
+Identacion :     
+Identacion :     
+Return : retornar
+Numero : 0
+Fin de linea : ;
+Comentarios : //area de declaracion ed funcion de carga principal
+Declaracion de Funcion : FUNCION
+Tipo de dato : NUMERO
+Identificador : principal
+Apertura de parentesis : (
+Clausura de parentesis : )
+Fin de linea : ;
+Encabezado de variables : variables
+Dos Puntos : :
+Identacion :     
+Identificador : numera
+Identificador : x
+Fin de linea : ;
+Encabezado de codigo : codigo:
+Identacion :     
+Identificador : a
+Asignacion : =
+Numero : 1
+Fin de linea : ;
+Identacion :     
+Condicion : si
+Apertura de parentesis : (
+Identificador : esImpar
+Apertura de parentesis : (
+Identificador : a
+Clausura de parentesis : )
+Clausura de parentesis : )
+Condicion : entonces:
+Identacion :     
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "El numero encontrado es impar:"
+Fin de linea : ;
+Identacion :     
+Condicion : sino:
+Identacion :     
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "el numero encontrado no es par"
+Fin de linea : ;
+Identacion :     
+Return : retornar
+Numero : 0
+Fin de linea : ;
+			 TABLA DE SIMBOLOS 
+
 Function			FUNCION			[0,0]
 Type			NUMERO			[0,8]
 Identifier			esImpar			[0,15]
