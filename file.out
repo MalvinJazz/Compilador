@@ -1,85 +1,88 @@
-Function#FUNCION#0#0
-Type#NUMERO#0#8
-Identifier#esImpar#0#15
-Symbol#(#0#23
-Type#numero#0#24
-Symbol#)#0#30
-Symbol#:#0#31
-Header#variables:#1#0
-Indention#    #2#0
-Type#numero#2#4
-Identifier#a#2#11
-Symbol#;#2#12
-Header#codigo:#3#0
-Indention#    #4#0
-Statement#si#4#4
-Symbol#(#4#7
-Identifier#num#4#9
-ArithmeticOperator#%#4#13
-Number#2#4#15
-Symbol#)#4#17
-Statement#ENTONCES:#4#19
-Indention#	#5#0
-Indention#	#5#1
-Indention#	#6#0
-Identifier#a#6#1
-ArithmeticOperator#+#6#2
-ArithmeticOperator#+#6#3
-Symbol#;#6#4
-Indention#    #7#0
-Indention#    #7#4
-Return#retornar#7#8
-Number#1#7#17
-Symbol#;#7#18
-Indention#    #9#0
-Statement#SINO#9#4
-Symbol#:#9#9
-Indention#    #10#0
-Indention#    #10#4
-Return#retornar#10#8
-Number#0#10#17
-Symbol#;#10#18
-Comment#//area de declaracion ed funcion de carga principal#12#0
-Function#FUNCION#17#0
-Type#NUMERO#17#8
-Identifier#principal#17#15
-Symbol#(#17#24
-Symbol#)#17#25
-Symbol#;#17#26
-Header#variables#18#0
-Symbol#:#18#10
-Indention#    #19#0
-Identifier#numera#19#4
-Identifier#x#19#11
-Symbol#;#19#12
-Header#codigo:#20#0
-Indention#    #21#0
-Identifier#a#21#4
-Symbol#=#21#6
-Number#1#21#8
-Symbol#;#21#9
-Indention#    #22#0
-Statement#si#22#4
-Symbol#(#22#7
-Identifier#esImpar#22#9
-Symbol#(#22#16
-Identifier#a#22#17
-Symbol#)#22#18
-Symbol#)#22#20
-Statement#entonces:#22#22
-Indention#    #23#0
-Indention#    #23#4
-SystemPrint#escribir#23#8
-SystemPrint#"El numero encontrado es impar:"#23#17
-Symbol#;#23#49
-Indention#    #24#0
-Statement#sino:#24#4
-Indention#    #25#0
-Indention#    #25#4
-SystemPrint#escribir#25#8
-SystemPrint#"el numero encontrado no es par"#25#17
-Symbol#;#25#49
-Indention#    #26#0
-Return#retornar#26#4
-Number#0#26#13
-Symbol#;#26#14
+Primer proyecto de compiladores, Ingenieria en Informatica y sistemas, Universidad Rafael Landivar
+desarrollado por los estudiantes Melvin Juarez y Carlos Garcia. Se utilizo JFlex para la generacion 
+de dicho analizador. 
+
+Function			FUNCION			[0,0]
+Type			NUMERO			[0,8]
+Identifier			esImpar			[0,15]
+Symbol			(			[0,23]
+Type			numero			[0,24]
+Symbol			)			[0,30]
+Symbol			:			[0,31]
+Header			variables:			[1,0]
+Indention			    			[2,0]
+Type			numero			[2,4]
+Identifier			a			[2,11]
+Symbol			;			[2,12]
+Header			codigo:			[3,0]
+Indention			    			[4,0]
+Statement			si			[4,4]
+Symbol			(			[4,7]
+Identifier			num			[4,9]
+ArithmeticOperator			%			[4,13]
+Number			2			[4,15]
+Symbol			)			[4,17]
+Statement			ENTONCES:			[4,19]
+Indention							[4,28]
+Indention							[5,0]
+Identifier			a			[5,1]
+ArithmeticOperator			+			[5,2]
+ArithmeticOperator			+			[5,3]
+Symbol			;			[5,4]
+Indention			    			[6,0]
+Indention			    			[6,4]
+Return			retornar			[6,8]
+Number			1			[6,17]
+Symbol			;			[6,18]
+Indention			    			[8,0]
+Statement			SINO			[8,4]
+Symbol			:			[8,9]
+Indention			    			[9,0]
+Indention			    			[9,4]
+Return			retornar			[9,8]
+Number			0			[9,17]
+Symbol			;			[9,18]
+Comment			//area de declaracion ed funcion de carga principal			[11,0]
+Function			FUNCION			[16,0]
+Type			NUMERO			[16,8]
+Identifier			principal			[16,15]
+Symbol			(			[16,24]
+Symbol			)			[16,25]
+Symbol			;			[16,26]
+Header			variables			[17,0]
+Symbol			:			[17,10]
+Indention			    			[18,0]
+Identifier			numera			[18,4]
+Identifier			x			[18,11]
+Symbol			;			[18,12]
+Header			codigo:			[19,0]
+Indention			    			[20,0]
+Identifier			a			[20,4]
+Symbol			=			[20,6]
+Number			1			[20,8]
+Symbol			;			[20,9]
+Indention			    			[21,0]
+Statement			si			[21,4]
+Symbol			(			[21,7]
+Identifier			esImpar			[21,9]
+Symbol			(			[21,16]
+Identifier			a			[21,17]
+Symbol			)			[21,18]
+Symbol			)			[21,20]
+Statement			entonces:			[21,22]
+Indention			    			[22,0]
+Indention			    			[22,4]
+SystemPrint			escribir			[22,8]
+SystemPrint			"El numero encontrado es impar:"			[22,17]
+Symbol			;			[22,49]
+Indention			    			[23,0]
+Statement			sino:			[23,4]
+Indention			    			[24,0]
+Indention			    			[24,4]
+SystemPrint			escribir			[24,8]
+SystemPrint			"el numero encontrado no es par"			[24,17]
+Symbol			;			[24,49]
+Indention			    			[25,0]
+Return			retornar			[25,4]
+Number			0			[25,13]
+Symbol			;			[25,14]

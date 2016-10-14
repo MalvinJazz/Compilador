@@ -2,8 +2,7 @@ FUNCION NUMERO esImpar (numero):
 variables:
     numero a;
 codigo:
-    si ( num % 2 ) ENTONCES:
-	numero a;	
+    si ( num % 2 ) ENTONCES:	
 	a++;
         retornar 1;
 

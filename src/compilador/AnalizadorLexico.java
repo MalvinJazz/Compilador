@@ -471,6 +471,7 @@ class AnalizadorLexico {
 
     private static ArrayList<String> tokenList = new ArrayList<>();
     static ArrayList<Tok> tabla = new ArrayList<>();
+    static String encabezado = "Primer proyecto de compiladores, Ingenieria en Informatica y sistemas, Universidad Rafael Landivar\ndesarrollado por los estudiantes Melvin Juarez y Carlos Garcia. Se utilizo JFlex para la generacion \nde dicho analizador. \n\n";
 
         /* Obtenemos el listado de Tokens para armar, por aparte, una tabla de
         *   simbolos mas facil de recorrer para una clasificacion adecuada, de 
@@ -486,8 +487,10 @@ class AnalizadorLexico {
     private void writeOutputFile() throws IOException {
         String filename = "file.out";
         BufferedWriter out = new BufferedWriter(new FileWriter(filename));
-        for (String s:this.tokenList) {
-            out.write(s + "\n");
+        out.write(encabezado);
+        for (Tok argumento: this.tabla)
+        {
+            out.write(argumento.getTipo() + "\t\t\t" + argumento.getToken() + "\t\t\t" + "[" + argumento.getFila() + "," + argumento.getColumna() + "]" + "\n");
         }
         out.close();
     }
