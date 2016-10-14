@@ -3,6 +3,7 @@ variables:
     numero a;
 codigo:
     si ( num % 2 ) ENTONCES:
+	numero a;	
 	a++;
         retornar 1;
 
