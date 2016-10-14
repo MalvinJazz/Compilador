@@ -1,0 +1,7 @@
+/* área de declaración de clases */
+funcion numero esImpar(numero num):
+  codigo:
+    si ( num % 2 ) entonces:
+      retornar 1;
+    sino:
+      retornar 0;

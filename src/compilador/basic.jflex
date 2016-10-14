@@ -89,12 +89,15 @@ import java.util.ArrayList;
     this.tokenList = new ArrayList();
 %init}
 
+ArchivoNombre = {Identificador}({KeyL}[a-zA-Z\-0-9]*{KeyR})?\*?\.{Identificador}
 
 Decimal = [1-9][0-9]* | 0
 Identificador = [a-zA-Z][a-zA-Z0-9_]*
 
 
+
 //Gramaticales
+TokenPunto = "."
 TokenFinLinea = ";"
 TokenComillas = "\""
 TokenDosPuntos = ":"
@@ -164,6 +167,7 @@ TokenExp = "^"
 TokenInc = "INCREMENTAR" | "incrementar"
 TokenDec = "DECREMENTAR" | "decrementar"
 TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {TokenMod} | {TokenExp}
+
 
 
 %xstates ExTipo 
@@ -330,6 +334,13 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
                     }
+{TokenPunto}        {
+                        tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Punto : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                    }
 {TokenOperacion}    {
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
@@ -447,6 +458,7 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
                     }
+
 {Identificador}     {
                         boolean x = false;
                         for (int i = 0; i < tabla.size(); i++) {
@@ -480,6 +492,14 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
                             compiladoSalida.add(compilado);
                             System.out.println(compilado);
                         }
+                    }
+{ArchivoNombre}     {
+                        tokenList.add("File#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Archivo : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                        
                     }
 \r|\n|\r\n          {}
 {TokenEspacio}      {}

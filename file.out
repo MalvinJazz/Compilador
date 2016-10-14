@@ -4,18 +4,14 @@ de dicho analizador.
 
 			 CODIGO COMPILADO 
 
-Declaracion de Funcion : FUNCION
-Tipo de dato : NUMERO
+Declaracion de Funcion : funcion
+Tipo de dato : numero
 Identificador : esImpar
 Apertura de parentesis : (
 Tipo de dato : numero
+Identificador : num
 Clausura de parentesis : )
 Dos Puntos : :
-Encabezado de variables : variables:
-Identacion :     
-Tipo de dato : numero
-Identificador : a
-Fin de linea : ;
 Encabezado de codigo : codigo:
 Identacion :     
 Condicion : si
@@ -24,153 +20,43 @@ Identificador : num
 Operacion basica : %
 Numero : 2
 Clausura de parentesis : )
-Condicion : ENTONCES:
-Identacion : 	
-Identacion : 	
-Identificador : a
-Operacion basica : +
-Operacion basica : +
-Fin de linea : ;
-Identacion :     
-Identacion :     
-Return : retornar
-Numero : 1
-Fin de linea : ;
-Identacion :     
-Condicion : SINO
-Dos Puntos : :
-Identacion :     
-Identacion :     
-Return : retornar
-Numero : 0
-Fin de linea : ;
-Comentarios : //area de declaracion ed funcion de carga principal
-Declaracion de Funcion : FUNCION
-Tipo de dato : NUMERO
-Identificador : principal
-Apertura de parentesis : (
-Clausura de parentesis : )
-Fin de linea : ;
-Encabezado de variables : variables
-Dos Puntos : :
-Identacion :     
-Identificador : numera
-Identificador : x
-Fin de linea : ;
-Encabezado de codigo : codigo:
-Identacion :     
-Identificador : a
-Asignacion : =
-Numero : 1
-Fin de linea : ;
-Identacion :     
-Condicion : si
-Apertura de parentesis : (
-Identificador : esImpar
-Apertura de parentesis : (
-Identificador : a
-Clausura de parentesis : )
-Clausura de parentesis : )
 Condicion : entonces:
 Identacion :     
-Identacion :     
-Escribir en pantalla : escribir
-Salida de sistema: "El numero encontrado es impar:"
+Return : retornar
+Numero : 1
 Fin de linea : ;
 Identacion :     
 Condicion : sino:
-Identacion :     
-Identacion :     
-Escribir en pantalla : escribir
-Salida de sistema: "el numero encontrado no es par"
-Fin de linea : ;
 Identacion :     
 Return : retornar
 Numero : 0
 Fin de linea : ;
 			 TABLA DE SIMBOLOS 
 
-Function			FUNCION			[0,0]
-Type			NUMERO			[0,8]
-Identifier			esImpar			[0,15]
-Symbol			(			[0,23]
-Type			numero			[0,24]
-Symbol			)			[0,30]
-Symbol			:			[0,31]
-Header			variables:			[1,0]
-Indention			    			[2,0]
-Type			numero			[2,4]
-Identifier			a			[2,11]
-Symbol			;			[2,12]
-Header			codigo:			[3,0]
+Function			funcion			[1,0]
+Type			numero			[1,8]
+Identifier			esImpar			[1,15]
+Symbol			(			[1,22]
+Type			numero			[1,23]
+Identifier			num			[1,30]
+Symbol			)			[1,33]
+Symbol			:			[1,34]
+Header			codigo:			[2,2]
+Indention			    			[3,0]
+Statement			si			[3,4]
+Symbol			(			[3,7]
+Identifier			num			[3,9]
+ArithmeticOperator			%			[3,13]
+Number			2			[3,15]
+Symbol			)			[3,17]
+Statement			entonces:			[3,19]
 Indention			    			[4,0]
-Statement			si			[4,4]
-Symbol			(			[4,7]
-Identifier			num			[4,9]
-ArithmeticOperator			%			[4,13]
-Number			2			[4,15]
-Symbol			)			[4,17]
-Statement			ENTONCES:			[4,19]
-Indention							[4,28]
-Indention							[5,0]
-Identifier			a			[5,1]
-ArithmeticOperator			+			[5,2]
-ArithmeticOperator			+			[5,3]
-Symbol			;			[5,4]
+Return			retornar			[4,6]
+Number			1			[4,15]
+Symbol			;			[4,16]
+Indention			    			[5,0]
+Statement			sino:			[5,4]
 Indention			    			[6,0]
-Indention			    			[6,4]
-Return			retornar			[6,8]
-Number			1			[6,17]
-Symbol			;			[6,18]
-Indention			    			[8,0]
-Statement			SINO			[8,4]
-Symbol			:			[8,9]
-Indention			    			[9,0]
-Indention			    			[9,4]
-Return			retornar			[9,8]
-Number			0			[9,17]
-Symbol			;			[9,18]
-Comment			//area de declaracion ed funcion de carga principal			[11,0]
-Function			FUNCION			[16,0]
-Type			NUMERO			[16,8]
-Identifier			principal			[16,15]
-Symbol			(			[16,24]
-Symbol			)			[16,25]
-Symbol			;			[16,26]
-Header			variables			[17,0]
-Symbol			:			[17,10]
-Indention			    			[18,0]
-Identifier			numera			[18,4]
-Identifier			x			[18,11]
-Symbol			;			[18,12]
-Header			codigo:			[19,0]
-Indention			    			[20,0]
-Identifier			a			[20,4]
-Symbol			=			[20,6]
-Number			1			[20,8]
-Symbol			;			[20,9]
-Indention			    			[21,0]
-Statement			si			[21,4]
-Symbol			(			[21,7]
-Identifier			esImpar			[21,9]
-Symbol			(			[21,16]
-Identifier			a			[21,17]
-Symbol			)			[21,18]
-Symbol			)			[21,20]
-Statement			entonces:			[21,22]
-Indention			    			[22,0]
-Indention			    			[22,4]
-SystemPrint			escribir			[22,8]
-SystemPrint			"El numero encontrado es impar:"			[22,17]
-Symbol			;			[22,49]
-Indention			    			[23,0]
-Statement			sino:			[23,4]
-Indention			    			[24,0]
-Indention			    			[24,4]
-SystemPrint			escribir			[24,8]
-SystemPrint			"el numero encontrado no es par"			[24,17]
-Symbol			;			[24,49]
-Indention			    			[25,0]
-Return			retornar			[25,4]
-Number			0			[25,13]
-Symbol			;			[25,14]
+Return			retornar			[6,6]
+Number			0			[6,15]
+Symbol			;			[6,16]
