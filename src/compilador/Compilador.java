@@ -23,6 +23,7 @@ import java.util.Stack;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,7 +34,8 @@ import java.util.logging.Logger;
  * 
  */
 public class Compilador {
-
+    
+    static ArrayList<String> tokens;
     /**
      * @param args the command line arguments
      */
@@ -60,7 +62,9 @@ public class Compilador {
                             archivo = new FileReader(pop);
                             AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
                             analizadorLexico.yylex();
+                            tokens = AnalizadorLexico.getTokenList();
                             archivo.close();
+                            
 
                         }else
                             System.out.println("El archivo no es valido.");
@@ -83,5 +87,6 @@ public class Compilador {
         }
         
     }
+   
     
 }

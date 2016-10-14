@@ -2,9 +2,10 @@ FUNCION NUMERO esImpar (numero):
 variables:
     numero a;
 codigo:
-    @
     si ( num % 2 ) ENTONCES:
         retornar 1;
+	a++;
+	numero a;
     SINO :
         retornar 0;
 
