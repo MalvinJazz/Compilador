@@ -111,7 +111,10 @@ TokenSout = {TokenComillas}.*{TokenComillas}
 //Agrupadores
 ParenL = "("
 ParenR = ")"
-
+KeyL = "["
+KeyR = "]"
+MayorQ= ">"
+MenorQ = "<"
 
 //Preprocesador
 TokenInclude = "INCLUIR"|"incluir"
@@ -376,6 +379,38 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
                     }
+
+
+{KeyL}            {
+                        tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Apertura de corchete : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                    }
+{KeyR}            {
+                        tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Clausura de corchete : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                    }
+
+{MayorQ}            {
+                        tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Simbolo mayor que : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                    }
+{MenorQ}            {
+                        tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Simbolo menor que : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                    }
+
 {TokenFinLinea}     {
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();

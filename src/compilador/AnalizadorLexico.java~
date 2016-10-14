@@ -489,11 +489,11 @@ class AnalizadorLexico {
         String filename = "file.out";
         BufferedWriter out = new BufferedWriter(new FileWriter(filename));
         out.write(encabezado);
-        out.write("\t\t\t CODIGO COMPILADO \n");
+        out.write("\t\t\t CODIGO COMPILADO \n\n");
         for (int i = 0; i < compiladoSalida.size(); i++) {
             out.write(compiladoSalida.get(i) + "\n");
         } 
-        out.write("\t\t\t TABLA DE SIMBOLOS \n");
+        out.write("\t\t\t TABLA DE SIMBOLOS \n\n");
         for (Tok argumento: this.tabla)
         {
             out.write(argumento.getTipo() + "\t\t\t" + argumento.getToken() + "\t\t\t" + "[" + argumento.getFila() + "," + argumento.getColumna() + "]" + "\n");
