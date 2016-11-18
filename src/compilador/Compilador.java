@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java_cup.runtime.Scanner;
 
 /**
  *
@@ -61,7 +62,9 @@ public class Compilador {
 
                             archivo = new FileReader(pop);
                             AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
-                            analizadorLexico.yylex();
+                            AnalizadorSintactico parser = new AnalizadorSintactico((Scanner) analizadorLexico);
+                            parser.parse();
+                            //analizadorLexico.yylex();
                             tokens = AnalizadorLexico.getTokenList();
                             archivo.close();
                             
@@ -84,6 +87,8 @@ public class Compilador {
         } catch (IOException e) {
             //Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, e);
             System.err.println("Error al leer el archivo especificado.");
+        } catch (Exception ex) {
+            Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
