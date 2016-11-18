@@ -16,10 +16,14 @@
  */
 package lector_excel;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author MalvinJazz
  */
-public class Libros {
+public class Libros extends ArrayList<Libro>{
+    
+    
     
 }

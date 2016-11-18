@@ -4,59 +4,833 @@ de dicho analizador.
 
 			 CODIGO COMPILADO 
 
+Identificador : incluir
+Salida de sistema: "funciones.led"
 Declaracion de Funcion : funcion
 Tipo de dato : numero
-Identificador : esImpar
+Identificador : hola_mundo
 Apertura de parentesis : (
-Tipo de dato : numero
-Identificador : num
 Clausura de parentesis : )
 Dos Puntos : :
+Encabezado de archivo : archivos:
+Identacion :     
+Identificador : archivo_unitario
+Archivo : reporte1.xslx
+Fin de linea : ;
+Identacion :     
+Identificador : archivos_clientes
+Archivo : reportesClientes*.xslx
+Comas : ,
+Archivo : hojaLibreOffice.ods
+Fin de linea : ;
+Identacion :     
+Identificador : archivos_varios
+Archivo : reporteA.xslx
+Comas : ,
+Archivo : reporteB.xslx
+Comas : ,
+Archivo : reporteD.xslx
+Fin de linea : ;
+Identacion :     
+Identificador : archivos_varios2
+Archivo : reporte[a-d].xslx
+Fin de linea : ;
+Encabezado de variables : variables:
+Identacion :     
+Tipo de dato : numero
+Identificador : a
+Comas : ,
+Identificador : contador
+Fin de linea : ;
+Identacion :     
+Tipo de dato : cadena
+Identificador : nombre
+Fin de linea : ;
 Encabezado de codigo : codigo:
+Identacion :     
+Identificador : a
+Asignacion : =
+Numero : 0
+Fin de linea : ;
+Identacion :     
+Identificador : nombre
+Asignacion : =
+Salida de sistema: ""
+Fin de linea : ;
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "abriendo archivo de excel"
+Fin de linea : ;
+Identacion :     
+Comentarios : // se guarda una cadena de texto en la variable nombre
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "extrayendo reporte"
+Fin de linea : ;
+Identacion :     
+Abrir archivo : abrir
+Identificador : archivo_unitario
+Fin de linea : ;
+Identacion :     
+Comentarios : // extrayendo información de celda 3,4 de la primera hoja de excel
+Identacion :     
+Comentarios : // como número
+Identacion :     
+Identificador : a
+Asignacion : =
+Identificador : archivo_unitario
+Apertura de corchete : [
+Numero : 3
+Comas : ,
+Numero : 4
+Clausura de corchete : ]
+Fin de linea : ;
+Identacion :     
+Comentarios : // extrayendo información de celda 3,4 de la segunda hoja de excel
+Identacion :     
+Comentarios : // como cadena de texto
+Identacion :     
+Identificador : nombre
+Asignacion : =
+Identificador : archivo_unitario
+Apertura de corchete : [
+Numero : 2
+Comas : ,
+Numero : 3
+Comas : ,
+Numero : 4
+Clausura de corchete : ]
+Fin de linea : ;
+Identacion :     
+Comentarios : // se guarda un numero en la variable nombre
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "el nombre encontrado es: "
+Comas : ,
+Identificador : nombre
+Fin de linea : ;
+Identacion :     
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "el número encontrado es: "
+Comas : ,
+Identificador : a
+Fin de linea : ;
 Identacion :     
 Condicion : si
 Apertura de parentesis : (
-Identificador : num
-Operacion basica : %
-Numero : 2
+Identificador : esImpar
+Apertura de parentesis : (
+Identificador : a
+Clausura de parentesis : )
 Clausura de parentesis : )
 Condicion : entonces:
 Identacion :     
-Return : retornar
-Numero : 1
+Escribir en pantalla : escribir
+Salida de sistema: "El numero que se encontró es impar"
 Fin de linea : ;
 Identacion :     
 Condicion : sino:
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "El numero que se econtró no es par"
+Fin de linea : ;
+Identacion :     
+Comentarios : //accediendo a archivos multiples
+Identacion :     
+Abrir archivo : abrir
+Identificador : archivos_clientes
+Fin de linea : ;
+Identacion :     
+Identificador : a
+Asignacion : =
+Numero : 0
+Fin de linea : ;
+Identacion :     
+Comentarios : // ejemplos de operaciones básicas de datos obtenidos
+Identacion :     
+Identificador : a
+Asignacion : =
+Identificador : a
+Operacion basica : +
+Identificador : archivos_clientes
+Apertura de corchete : [
+Numero : 3
+Comas : ,
+Numero : 4
+Clausura de corchete : ]
+Punto : .
+Identificador : suma
+Fin de linea : ;
+Identacion :     
+Identificador : a
+Asignacion : =
+Identificador : a
+Operacion basica : +
+Identificador : archivos_clientes
+Apertura de corchete : [
+Numero : 3
+Comas : ,
+Numero : 4
+Clausura de corchete : ]
+Punto : .
+Identificador : resta
+Fin de linea : ;
+Identacion :     
+Identificador : a
+Asignacion : =
+Identificador : a
+Operacion basica : +
+Identificador : archivos_clientes
+Apertura de corchete : [
+Numero : 3
+Comas : ,
+Numero : 4
+Clausura de corchete : ]
+Punto : .
+Identificador : promedo
+Fin de linea : ;
+Identacion :     
+Identificador : a
+Asignacion : =
+Identificador : a
+Operacion basica : +
+Identificador : archivos_clientes
+Apertura de corchete : [
+Numero : 3
+Comas : ,
+Numero : 4
+Clausura de corchete : ]
+Punto : .
+Identificador : moda
+Fin de linea : ;
+Identacion :     
+Identificador : a
+Asignacion : =
+Identificador : a
+Operacion basica : +
+Identificador : archivos_clientes
+Apertura de corchete : [
+Numero : 3
+Comas : ,
+Numero : 4
+Clausura de corchete : ]
+Punto : .
+Identificador : media
+Fin de linea : ;
+Identacion :     
+Identificador : a
+Asignacion : =
+Identificador : a
+Operacion basica : +
+Identificador : archivos_clientes
+Apertura de corchete : [
+Numero : 3
+Comas : ,
+Numero : 4
+Clausura de corchete : ]
+Punto : .
+Identificador : mayor
+Fin de linea : ;
+Identacion :     
+Identificador : a
+Asignacion : =
+Identificador : a
+Operacion basica : +
+Identificador : archivos_clientes
+Apertura de corchete : [
+Numero : 3
+Comas : ,
+Numero : 4
+Clausura de corchete : ]
+Punto : .
+Identificador : menor
+Fin de linea : ;
+Identacion :     
+Comentarios : // uso con ciclos y variables con un solo archivo
+Identacion :     
+Ciclo : desde
+Apertura de parentesis : (
+Identificador : contador
+Asignacion : =
+Numero : 1
+Ciclo : mientras
+Identificador : contador
+Simbolo menor que : <
+Numero : 10
+Incrementar en uno : incrementar
+Numero : 1
+Clausura de parentesis : )
+Ciclo : iterar:
+Identacion :     
+Comentarios : // solo se busca en la fila 1 y se itera en la columna
+Identacion :     
+Condicion : si
+Apertura de parentesis : (
+Identificador : archivo_unitario
+Apertura de corchete : [
+Numero : 1
+Comas : ,
+Identificador : contador
+Clausura de corchete : ]
+Asignacion : =
+Asignacion : =
+Salida de sistema: "Total"
+Clausura de parentesis : )
+Condicion : entonces:
+Identacion :     
+Identacion :     
+Comentarios : // si la celda tiene la palabra "Total" entonces
+Identacion :     
+Identacion :     
+Comentarios : // se imprime la siguiente columna
+Identacion :     
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "el total es "
+Comas : ,
+Identificador : archivo_unitario
+Apertura de corchete : [
+Numero : 1
+Comas : ,
+Identificador : contador
+Operacion basica : +
+Numero : 1
+Clausura de corchete : ]
+Fin de linea : ;
+Identacion :     
+Comentarios : // uso de ciclos con multiples archivos
+Identacion :     
+Abrir archivo : abrir
+Identificador : archivos_varios
+Fin de linea : ;
+Identacion :     
+Comentarios : // iterando en cada archivo en la lista de archivos archivos_varios
+Identacion :     
+Foreach : paracada
+Apertura de parentesis : (
+Identificador : archivo
+Identificador : en
+Identificador : archivos_varios
+Clausura de parentesis : )
+Ciclo : iterar:
+Identacion :     
+Comentarios : // el código de acá se ejecuta por cada archivo, por lo que
+Identacion :     
+Comentarios : // ahora se puede obtener información como si fuese
+Identacion :     
+Comentarios : // un solo archivo
+Identacion :     
+Condicion : si
+Apertura de parentesis : (
+Identificador : archivo
+Apertura de corchete : [
+Numero : 1
+Comas : ,
+Numero : 5
+Clausura de corchete : ]
+Asignacion : =
+Asignacion : =
+Numero : 10
+Clausura de parentesis : )
+Condicion : entonces:
+Identacion :     
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "en el archivo ", archivo, " he encontrado un número 10"
+Fin de linea : ;
+Identacion :     
+Comentarios : // iterando dentro de cada archivo
+Identacion :     
+Ciclo : desde
+Apertura de parentesis : (
+Identificador : contador
+Asignacion : =
+Numero : 1
+Ciclo : mientras
+Identificador : contador
+Simbolo menor que : <
+Numero : 10
+Incrementar en uno : incrementar
+Numero : 1
+Clausura de parentesis : )
+Ciclo : iterar:
+Identacion :     
+Identacion :     
+Condicion : si
+Apertura de parentesis : (
+Identificador : archivo
+Apertura de corchete : [
+Numero : 2
+Comas : ,
+Identificador : contador
+Clausura de corchete : ]
+Asignacion : =
+Asignacion : =
+Salida de sistema: "Total"
+Clausura de parentesis : )
+Condicion : entonces:
+Identacion :     
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "Total en ", archivo, " es:"
+Identificador : archivo
+Apertura de corchete : [
+Numero : 2
+Comas : ,
+Identificador : contador
+Operacion basica : +
+Numero : 1
+Clausura de corchete : ]
+Fin de linea : ;
+Identacion :     
+Comentarios : // la funcion devuelve un valor
+Identacion :     
+Return : retornar
+Identificador : a
+Fin de linea : ;
+Declaracion de Funcion : funcion
+Tipo de dato : numero
+Identificador : principal
+Apertura de parentesis : (
+Clausura de parentesis : )
+Dos Puntos : :
+Encabezado de variables : variables:
+Identacion :     
+Comentarios : //numero suma;
+Encabezado de codigo : codigo:
+Identacion :     
+Comentarios : // obteniendo el resultado de hola_mundo()
+Identacion :     
+Identificador : suma
+Asignacion : =
+Identificador : hola_mundo
+Apertura de parentesis : (
+Clausura de parentesis : )
+Fin de linea : ;
+Identacion :     
+Escribir en pantalla : escribir
+Salida de sistema: "la suma es: "
+Comas : ,
+Identificador : suma
+Fin de linea : ;
 Identacion :     
 Return : retornar
 Numero : 0
 Fin de linea : ;
 			 TABLA DE SIMBOLOS 
 
-Function			funcion			[1,0]
-Type			numero			[1,8]
-Identifier			esImpar			[1,15]
-Symbol			(			[1,22]
-Type			numero			[1,23]
-Identifier			num			[1,30]
-Symbol			)			[1,33]
-Symbol			:			[1,34]
-Header			codigo:			[2,2]
-Indention			    			[3,0]
-Statement			si			[3,4]
-Symbol			(			[3,7]
-Identifier			num			[3,9]
-ArithmeticOperator			%			[3,13]
-Number			2			[3,15]
-Symbol			)			[3,17]
-Statement			entonces:			[3,19]
-Indention			    			[4,0]
-Return			retornar			[4,6]
-Number			1			[4,15]
-Symbol			;			[4,16]
-Indention			    			[5,0]
-Statement			sino:			[5,4]
+Identifier			incluir			[1,0]
+SystemPrint			"funciones.led"			[1,8]
+Function			funcion			[4,0]
+Type			numero			[4,8]
+Identifier			hola_mundo			[4,15]
+Symbol			(			[4,25]
+Symbol			)			[4,26]
+Symbol			:			[4,27]
+Header			archivos:			[5,2]
 Indention			    			[6,0]
-Return			retornar			[6,6]
-Number			0			[6,15]
-Symbol			;			[6,16]
+Identifier			archivo_unitario			[6,4]
+File			reporte1.xslx			[6,21]
+Symbol			;			[6,34]
+Indention			    			[7,0]
+Identifier			archivos_clientes			[7,4]
+File			reportesClientes*.xslx			[7,22]
+Symbol			,			[7,44]
+File			hojaLibreOffice.ods			[7,46]
+Symbol			;			[7,65]
+Indention			    			[8,0]
+Identifier			archivos_varios			[8,4]
+File			reporteA.xslx			[8,20]
+Symbol			,			[8,33]
+File			reporteB.xslx			[8,34]
+Symbol			,			[8,47]
+File			reporteD.xslx			[8,48]
+Symbol			;			[8,61]
+Indention			    			[9,0]
+Identifier			archivos_varios2			[9,4]
+File			reporte[a-d].xslx			[9,21]
+Symbol			;			[9,38]
+Header			variables:			[11,2]
+Indention			    			[12,0]
+Type			numero			[12,4]
+Identifier			a			[12,11]
+Symbol			,			[12,12]
+Identifier			contador			[12,14]
+Symbol			;			[12,22]
+Indention			    			[13,0]
+Type			cadena			[13,4]
+Identifier			nombre			[13,11]
+Symbol			;			[13,17]
+Header			codigo:			[15,2]
+Indention			    			[16,0]
+Identifier			a			[16,4]
+Symbol			=			[16,6]
+Number			0			[16,8]
+Symbol			;			[16,9]
+Indention			    			[17,0]
+Identifier			nombre			[17,4]
+Symbol			=			[17,11]
+SystemPrint			""			[17,13]
+Symbol			;			[17,15]
+Indention			    			[19,0]
+SystemPrint			escribir			[19,4]
+SystemPrint			"abriendo archivo de excel"			[19,13]
+Symbol			;			[19,40]
+Indention			    			[20,0]
+Comment			// se guarda una cadena de texto en la variable nombre			[20,4]
+Indention			    			[21,0]
+SystemPrint			escribir			[21,4]
+SystemPrint			"extrayendo reporte"			[21,13]
+Symbol			;			[21,33]
+Indention			    			[22,0]
+Instruction			abrir			[22,4]
+Identifier			archivo_unitario			[22,10]
+Symbol			;			[22,26]
+Indention			    			[23,0]
+Comment			// extrayendo información de celda 3,4 de la primera hoja de excel			[23,4]
+Indention			    			[24,0]
+Comment			// como número			[24,4]
+Indention			    			[25,0]
+Identifier			a			[25,4]
+Symbol			=			[25,6]
+Identifier			archivo_unitario			[25,8]
+Symbol			[			[25,24]
+Number			3			[25,25]
+Symbol			,			[25,26]
+Number			4			[25,27]
+Symbol			]			[25,28]
+Symbol			;			[25,29]
+Indention			    			[26,0]
+Comment			// extrayendo información de celda 3,4 de la segunda hoja de excel			[26,4]
+Indention			    			[27,0]
+Comment			// como cadena de texto			[27,4]
+Indention			    			[28,0]
+Identifier			nombre			[28,4]
+Symbol			=			[28,11]
+Identifier			archivo_unitario			[28,13]
+Symbol			[			[28,29]
+Number			2			[28,30]
+Symbol			,			[28,31]
+Number			3			[28,32]
+Symbol			,			[28,33]
+Number			4			[28,34]
+Symbol			]			[28,35]
+Symbol			;			[28,36]
+Indention			    			[29,0]
+Comment			// se guarda un numero en la variable nombre			[29,4]
+Indention			    			[30,0]
+SystemPrint			escribir			[30,4]
+SystemPrint			"el nombre encontrado es: "			[30,13]
+Symbol			,			[30,40]
+Identifier			nombre			[30,42]
+Symbol			;			[30,48]
+Indention			    			[32,0]
+Indention			    			[36,0]
+SystemPrint			escribir			[36,4]
+SystemPrint			"el número encontrado es: "			[36,13]
+Symbol			,			[36,40]
+Identifier			a			[36,42]
+Symbol			;			[36,43]
+Indention			    			[37,0]
+Statement			si			[37,4]
+Symbol			(			[37,7]
+Identifier			esImpar			[37,9]
+Symbol			(			[37,16]
+Identifier			a			[37,17]
+Symbol			)			[37,18]
+Symbol			)			[37,20]
+Statement			entonces:			[37,22]
+Indention			    			[38,0]
+SystemPrint			escribir			[38,6]
+SystemPrint			"El numero que se encontró es impar"			[38,15]
+Symbol			;			[38,51]
+Indention			    			[39,0]
+Statement			sino:			[39,4]
+Indention			    			[40,0]
+SystemPrint			escribir			[40,6]
+SystemPrint			"El numero que se econtró no es par"			[40,15]
+Symbol			;			[40,51]
+Indention			    			[42,0]
+Comment			//accediendo a archivos multiples			[42,4]
+Indention			    			[43,0]
+Instruction			abrir			[43,4]
+Identifier			archivos_clientes			[43,10]
+Symbol			;			[43,27]
+Indention			    			[44,0]
+Identifier			a			[44,4]
+Symbol			=			[44,6]
+Number			0			[44,8]
+Symbol			;			[44,9]
+Indention			    			[46,0]
+Comment			// ejemplos de operaciones básicas de datos obtenidos			[46,4]
+Indention			    			[47,0]
+Identifier			a			[47,4]
+Symbol			=			[47,6]
+Identifier			a			[47,8]
+ArithmeticOperator			+			[47,10]
+Identifier			archivos_clientes			[47,12]
+Symbol			[			[47,29]
+Number			3			[47,30]
+Symbol			,			[47,31]
+Number			4			[47,32]
+Symbol			]			[47,33]
+Symbol			.			[47,34]
+Identifier			suma			[47,35]
+Symbol			;			[47,39]
+Indention			    			[48,0]
+Identifier			a			[48,4]
+Symbol			=			[48,6]
+Identifier			a			[48,8]
+ArithmeticOperator			+			[48,10]
+Identifier			archivos_clientes			[48,12]
+Symbol			[			[48,29]
+Number			3			[48,30]
+Symbol			,			[48,31]
+Number			4			[48,32]
+Symbol			]			[48,33]
+Symbol			.			[48,34]
+Identifier			resta			[48,35]
+Symbol			;			[48,40]
+Indention			    			[49,0]
+Identifier			a			[49,4]
+Symbol			=			[49,6]
+Identifier			a			[49,8]
+ArithmeticOperator			+			[49,10]
+Identifier			archivos_clientes			[49,12]
+Symbol			[			[49,29]
+Number			3			[49,30]
+Symbol			,			[49,31]
+Number			4			[49,32]
+Symbol			]			[49,33]
+Symbol			.			[49,34]
+Identifier			promedo			[49,35]
+Symbol			;			[49,42]
+Indention			    			[50,0]
+Identifier			a			[50,4]
+Symbol			=			[50,6]
+Identifier			a			[50,8]
+ArithmeticOperator			+			[50,10]
+Identifier			archivos_clientes			[50,12]
+Symbol			[			[50,29]
+Number			3			[50,30]
+Symbol			,			[50,31]
+Number			4			[50,32]
+Symbol			]			[50,33]
+Symbol			.			[50,34]
+Identifier			moda			[50,35]
+Symbol			;			[50,39]
+Indention			    			[51,0]
+Identifier			a			[51,4]
+Symbol			=			[51,6]
+Identifier			a			[51,8]
+ArithmeticOperator			+			[51,10]
+Identifier			archivos_clientes			[51,12]
+Symbol			[			[51,29]
+Number			3			[51,30]
+Symbol			,			[51,31]
+Number			4			[51,32]
+Symbol			]			[51,33]
+Symbol			.			[51,34]
+Identifier			media			[51,35]
+Symbol			;			[51,40]
+Indention			    			[52,0]
+Identifier			a			[52,4]
+Symbol			=			[52,6]
+Identifier			a			[52,8]
+ArithmeticOperator			+			[52,10]
+Identifier			archivos_clientes			[52,12]
+Symbol			[			[52,29]
+Number			3			[52,30]
+Symbol			,			[52,31]
+Number			4			[52,32]
+Symbol			]			[52,33]
+Symbol			.			[52,34]
+Identifier			mayor			[52,35]
+Symbol			;			[52,40]
+Indention			    			[53,0]
+Identifier			a			[53,4]
+Symbol			=			[53,6]
+Identifier			a			[53,8]
+ArithmeticOperator			+			[53,10]
+Identifier			archivos_clientes			[53,12]
+Symbol			[			[53,29]
+Number			3			[53,30]
+Symbol			,			[53,31]
+Number			4			[53,32]
+Symbol			]			[53,33]
+Symbol			.			[53,34]
+Identifier			menor			[53,35]
+Symbol			;			[53,40]
+Indention			    			[55,0]
+Comment			// uso con ciclos y variables con un solo archivo			[55,4]
+Indention			    			[56,0]
+Statement			desde			[56,4]
+Symbol			(			[56,10]
+Identifier			contador			[56,12]
+Symbol			=			[56,21]
+Number			1			[56,23]
+Statement			mientras			[56,25]
+Identifier			contador			[56,34]
+Symbol			<			[56,43]
+Number			10			[56,45]
+ArithmeticOperator			incrementar			[56,48]
+Number			1			[56,60]
+Symbol			)			[56,61]
+Statement			iterar:			[56,63]
+Indention			    			[57,0]
+Comment			// solo se busca en la fila 1 y se itera en la columna			[57,6]
+Indention			    			[58,0]
+Statement			si			[58,6]
+Symbol			(			[58,9]
+Identifier			archivo_unitario			[58,11]
+Symbol			[			[58,27]
+Number			1			[58,28]
+Symbol			,			[58,29]
+Identifier			contador			[58,30]
+Symbol			]			[58,38]
+Symbol			=			[58,40]
+Symbol			=			[58,41]
+SystemPrint			"Total"			[58,43]
+Symbol			)			[58,51]
+Statement			entonces:			[58,53]
+Indention			    			[59,0]
+Indention			    			[59,4]
+Comment			// si la celda tiene la palabra "Total" entonces			[59,8]
+Indention			    			[60,0]
+Indention			    			[60,4]
+Comment			// se imprime la siguiente columna			[60,8]
+Indention			    			[61,0]
+Indention			    			[61,4]
+SystemPrint			escribir			[61,8]
+SystemPrint			"el total es "			[61,17]
+Symbol			,			[61,31]
+Identifier			archivo_unitario			[61,33]
+Symbol			[			[61,49]
+Number			1			[61,50]
+Symbol			,			[61,51]
+Identifier			contador			[61,52]
+ArithmeticOperator			+			[61,60]
+Number			1			[61,61]
+Symbol			]			[61,62]
+Symbol			;			[61,63]
+Indention			    			[63,0]
+Comment			// uso de ciclos con multiples archivos			[63,4]
+Indention			    			[64,0]
+Instruction			abrir			[64,4]
+Identifier			archivos_varios			[64,10]
+Symbol			;			[64,25]
+Indention			    			[66,0]
+Comment			// iterando en cada archivo en la lista de archivos archivos_varios			[66,4]
+Indention			    			[67,0]
+Statement			paracada			[67,4]
+Symbol			(			[67,13]
+Identifier			archivo			[67,15]
+Identifier			en			[67,23]
+Identifier			archivos_varios			[67,26]
+Symbol			)			[67,43]
+Statement			iterar:			[67,45]
+Indention			    			[68,0]
+Comment			// el código de acá se ejecuta por cada archivo, por lo que			[68,6]
+Indention			    			[69,0]
+Comment			// ahora se puede obtener información como si fuese			[69,6]
+Indention			    			[70,0]
+Comment			// un solo archivo			[70,6]
+Indention			    			[71,0]
+Statement			si			[71,6]
+Symbol			(			[71,9]
+Identifier			archivo			[71,10]
+Symbol			[			[71,17]
+Number			1			[71,18]
+Symbol			,			[71,19]
+Number			5			[71,20]
+Symbol			]			[71,21]
+Symbol			=			[71,23]
+Symbol			=			[71,24]
+Number			10			[71,26]
+Symbol			)			[71,28]
+Statement			entonces:			[71,30]
+Indention			    			[72,0]
+Indention			    			[72,4]
+SystemPrint			escribir			[72,8]
+SystemPrint			"en el archivo ", archivo, " he encontrado un número 10"			[72,17]
+Symbol			;			[72,73]
+Indention			    			[74,0]
+Comment			// iterando dentro de cada archivo			[74,6]
+Indention			    			[75,0]
+Statement			desde			[75,6]
+Symbol			(			[75,12]
+Identifier			contador			[75,14]
+Symbol			=			[75,23]
+Number			1			[75,25]
+Statement			mientras			[75,27]
+Identifier			contador			[75,36]
+Symbol			<			[75,45]
+Number			10			[75,47]
+ArithmeticOperator			incrementar			[75,50]
+Number			1			[75,62]
+Symbol			)			[75,64]
+Statement			iterar:			[75,66]
+Indention			    			[76,0]
+Indention			    			[76,4]
+Statement			si			[76,8]
+Symbol			(			[76,11]
+Identifier			archivo			[76,13]
+Symbol			[			[76,20]
+Number			2			[76,21]
+Symbol			,			[76,22]
+Identifier			contador			[76,23]
+Symbol			]			[76,31]
+Symbol			=			[76,33]
+Symbol			=			[76,34]
+SystemPrint			"Total"			[76,36]
+Symbol			)			[76,44]
+Statement			entonces:			[76,46]
+Indention			    			[77,0]
+Indention			    			[77,4]
+SystemPrint			escribir			[77,10]
+SystemPrint			"Total en ", archivo, " es:"			[77,19]
+Identifier			archivo			[77,48]
+Symbol			[			[77,55]
+Number			2			[77,56]
+Symbol			,			[77,57]
+Identifier			contador			[77,58]
+ArithmeticOperator			+			[77,66]
+Number			1			[77,67]
+Symbol			]			[77,68]
+Symbol			;			[77,69]
+Indention			    			[79,0]
+Comment			// la funcion devuelve un valor			[79,4]
+Indention			    			[80,0]
+Return			retornar			[80,4]
+Identifier			a			[80,13]
+Symbol			;			[80,14]
+Function			funcion			[83,0]
+Type			numero			[83,8]
+Identifier			principal			[83,15]
+Symbol			(			[83,24]
+Symbol			)			[83,25]
+Symbol			:			[83,26]
+Header			variables:			[84,2]
+Indention			    			[85,0]
+Comment			//numero suma;			[85,4]
+Header			codigo:			[86,2]
+Indention			    			[87,0]
+Comment			// obteniendo el resultado de hola_mundo()			[87,4]
+Indention			    			[88,0]
+Identifier			suma			[88,4]
+Symbol			=			[88,9]
+Identifier			hola_mundo			[88,11]
+Symbol			(			[88,21]
+Symbol			)			[88,22]
+Symbol			;			[88,23]
+Indention			    			[89,0]
+SystemPrint			escribir			[89,4]
+SystemPrint			"la suma es: "			[89,13]
+Symbol			,			[89,27]
+Identifier			suma			[89,29]
+Symbol			;			[89,33]
+Indention			    			[90,0]
+Return			retornar			[90,4]
+Number			0			[90,13]
+Symbol			;			[90,14]
