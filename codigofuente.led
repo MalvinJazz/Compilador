@@ -1,6 +1,7 @@
 FUNCION NUMERO esImpar (numero):
 variables:
     numero a;
+    aas[2,4];
 codigo:
     si ( num % 2 ) ENTONCES:		
 	a++;
