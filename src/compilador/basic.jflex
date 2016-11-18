@@ -132,9 +132,9 @@ TokenInclude = "INCLUIR"|"incluir"
 //Funciones y encabezados
 TokenFunction = "FUNCION" | "funcion"
 TokenReturn = "RETORNAR" | "retornar"
-TokenEVariables = ("VARIABLES"|"variables"){TokenDosPuntos}?
-TokenECodigo = ("CODIGO"|"codigo"){TokenDosPuntos}?
-TokenEFile = ("ARCHIVOS"|"archivos"){TokenDosPuntos}?
+TokenEVariables = ("VARIABLES"|"variables")
+TokenECodigo = ("CODIGO"|"codigo")
+TokenEFile = ("ARCHIVOS"|"archivos")
 
 //Tipos de datos
 TokenInt = "NUMERO" | "numero"
@@ -150,10 +150,10 @@ TokenOpen = "ABRIR" | "abrir"
 //Sentencias
 TokenIf = "SI" | "si"
 TokenElse = ("SINO"|"sino"){TokenDosPuntos}?
-TokenThen = ("ENTONCES"|"entonces"){TokenDosPuntos}?
+TokenThen = ("ENTONCES"|"entonces")
 TokenFor = "DESDE" | "desde"
 TokenWhile = "MIENTRAS" | "mientras"
-TokenIterar = ("ITERAR"|"iterar"){TokenDosPuntos}?
+TokenIterar = ("ITERAR"|"iterar")
 TokenParaCada = "PARACADA" | "paracada"
 
 //Operadores Logicos
@@ -208,6 +208,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
 
 
 {TokenFunction}     {
+                        return new Symbol(sym.FUNCION,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Function#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Declaracion de Funcion : " + yytext();
@@ -215,6 +216,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {Decimal}           {
+                        return new Symbol(sym.TDECIMAL,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Number#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Numero : " + yytext();
@@ -222,6 +224,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenSout}         {
+                        return new Symbol(sym.SALIDA,new token(yycolumn, yyline, yytext()));
                         tokenList.add("SystemPrint#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Salida de sistema: " + yytext();
@@ -229,6 +232,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenTipos}        {
+                        return new Symbol(sym.TIPODATO,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Type#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Tipo de dato : " + yytext();
@@ -236,6 +240,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenReturn}       {
+                        return new Symbol(sym.RETORNO,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Return#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Return : " + yytext();
@@ -243,6 +248,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenEVariables}   {
+                        return new Symbol(sym.ENCVAR,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Header#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Encabezado de variables : " + yytext();
@@ -250,6 +256,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenECodigo}      {
+                        return new Symbol(sym.ENCCOD,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Header#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Encabezado de codigo : " + yytext();
@@ -257,6 +264,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenEFile}        {
+                        return new Symbol(sym.ENCFILE,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Header#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Encabezado de archivo : " + yytext();
@@ -264,6 +272,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenPrint}        {
+                        return new Symbol(sym.TPRINT,new token(yycolumn, yyline, yytext()));
                         tokenList.add("SystemPrint#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Escribir en pantalla : " + yytext();
@@ -271,6 +280,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenOpen}         {
+                        return new Symbol(sym.TOPEN,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Instruction#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Abrir archivo : " + yytext();
@@ -278,6 +288,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenIf}           {
+                        return new Symbol(sym.TIF,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Condicion : " + yytext();
@@ -285,6 +296,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenThen}         {
+                        return new Symbol(sym.TTHEN,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Condicion : " + yytext();
@@ -292,6 +304,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenElse}         {
+                        return new Symbol(sym.TELSE,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Condicion : " + yytext();
@@ -299,6 +312,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenFor}          {
+                        return new Symbol(sym.TFOR,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Ciclo : " + yytext();
@@ -306,6 +320,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenWhile}        {
+                        return new Symbol(sym.TWHILE,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Ciclo : " + yytext();
@@ -313,6 +328,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenIterar}       {
+                        return new Symbol(sym.ITERAR,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Ciclo : " + yytext();
@@ -320,6 +336,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenParaCada}     {
+                        return new Symbol(sym.TFOREACH,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Foreach : " + yytext();
@@ -327,6 +344,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenAnd}          {
+                        return new Symbol(sym.TAND,new token(yycolumn, yyline, yytext()));
                         tokenList.add("LogicalOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Operador Logico : " + yytext();
@@ -334,6 +352,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenOr}           {
+                        return new Symbol(sym.TOR,new token(yycolumn, yyline, yytext()));
                         tokenList.add("LogicalOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Operador Logico : " + yytext();
@@ -341,6 +360,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenAsignacion}   {
+                        return new Symbol(sym.ASIGNACION,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Asignacion : " + yytext();
@@ -348,6 +368,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenComas}        {
+                        return new Symbol(sym.COMAS,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Comas : " + yytext();
@@ -355,6 +376,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenPunto}        {
+                        return new Symbol(sym.PUNTO,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Punto : " + yytext();
@@ -362,6 +384,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenOperacion}    {
+                        return new Symbol(sym.OPERACION,new token(yycolumn, yyline, yytext()));
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Operacion basica : " + yytext();
@@ -369,6 +392,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenMod}          {
+                        return new Symbol(sym.TMOD,new token(yycolumn, yyline, yytext()));
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Modulo : " + yytext();
@@ -376,6 +400,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenExp}          {
+                        return new Symbol(sym.TEXP,new token(yycolumn, yyline, yytext()));
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Exponente : " + yytext();
@@ -383,6 +408,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenInc}          {
+                        return new Symbol(sym.INCREMENTAR,new token(yycolumn, yyline, yytext()));
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Incrementar en uno : " + yytext();
@@ -390,6 +416,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenDec}          {
+                        return new Symbol(sym.DECREMENTAR,new token(yycolumn, yyline, yytext()));
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Decrementar en uno : " + yytext();
@@ -397,6 +424,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {ParenL}            {
+                        return new Symbol(sym.PARENTESISI,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Apertura de parentesis : " + yytext();
@@ -404,6 +432,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {ParenR}            {
+                        return new Symbol(sym.PARENTESISD,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Clausura de parentesis : " + yytext();
@@ -413,6 +442,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
 
 
 {KeyL}            {
+                        return new Symbol(sym.CORI,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Apertura de corchete : " + yytext();
@@ -420,6 +450,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {KeyR}            {
+                        return new Symbol(sym.CORD,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Clausura de corchete : " + yytext();
@@ -427,6 +458,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {ConditionSym}      {
+                        return new Symbol(sym.CONDITIONSYM,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Conditional#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Condicional : " + yytext();
@@ -434,6 +466,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {MayorQ}            {
+                        return new Symbol(sym.MAYQ,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Simbolo mayor que : " + yytext();
@@ -441,6 +474,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {MenorQ}            {
+                        return new Symbol(sym.MENQ,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Simbolo menor que : " + yytext();
@@ -448,6 +482,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {IgualIgual}            {
+                        return new Symbol(sym.RELACIONAL,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Relacional#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Relacional : " + yytext();
@@ -456,6 +491,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                     }
 
 {TokenFinLinea}     {
+                        return new Symbol(sym.FINLINEA,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Fin de linea : " + yytext();
@@ -463,6 +499,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenComillas}     {
+                        return new Symbol(sym.COMILLAS,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Comillas : " + yytext();
@@ -470,6 +507,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenDosPuntos}    {
+                        return new Symbol(sym.DOSPUNTOS,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Dos Puntos : " + yytext();
@@ -478,6 +516,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                     }
 
 {TokenIdentacion}   {
+                        return new Symbol(sym.IDENTACION,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Indention#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Identacion : " + yytext();
@@ -492,6 +531,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenAns}          {
+                        return new Symbol(sym.ANS,new token(yycolumn, yyline, yytext()));
                         tokenList.add("ForAll#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "ForAll : " + yytext();
@@ -516,6 +556,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                             }
                             else
                             {
+                                return new Symbol(sym.ID,new token(yycolumn, yyline, yytext()));
                                 tokenList.add("Identifier#" + yytext() + "#" + yyline + "#" + yycolumn );
                                 addToTable();
                                 String compilado = "Identificador : " + yytext();
@@ -526,6 +567,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         }
                         else
                         {
+                            return new Symbol(sym.ID,new token(yycolumn, yyline, yytext()));
                             tokenList.add("Identifier#" + yytext() + "#" + yyline + "#" + yycolumn );
                             addToTable();
                             String compilado = "Identificador : " + yytext();
@@ -534,6 +576,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         }
                     }
 {TokenEstadistica}         {
+                        return new Symbol(sym.ESTADISTICA,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Estadistica#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Estadistica : " + yytext();
@@ -541,6 +584,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {Directiva}         {
+                        return new Symbol(sym.DIRECTIVA,new token(yycolumn, yyline, yytext()));
                         tokenList.add("Directiva#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Directiva : " + yytext();
@@ -548,6 +592,7 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {ArchivoNombre}     {
+                        return new Symbol(sym.NAMEARCHIVO,new token(yycolumn, yyline, yytext()));
                         tokenList.add("File#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Archivo : " + yytext();
