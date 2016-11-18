@@ -5,7 +5,6 @@ codigo:
     SINO :
         retornar 0;
 
-//area de declaracion ed funcion de carga principal
 FUNCION NUMERO principal();
 variables :
     numero a;

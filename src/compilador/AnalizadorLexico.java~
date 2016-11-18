@@ -17,7 +17,7 @@ import java_cup.runtime.Symbol;
  * <a href="http://www.jflex.de/">JFlex</a> 1.6.1
  * from the specification file <tt>src/compilador/basic.jflex</tt>
  */
-class AnalizadorLexico {
+class AnalizadorLexico implements java_cup.runtime.Scanner {
 
   /** This character denotes the end of file */
   public static final int YYEOF = -1;
@@ -867,7 +867,7 @@ class AnalizadorLexico {
    * Contains user EOF-code, which will be executed exactly once,
    * when the end of file is reached
    */
-  private void zzDoEOF() {
+  private void zzDoEOF() throws java.io.IOException {
     if (!zzEOFDone) {
       zzEOFDone = true;
         try {
@@ -881,7 +881,7 @@ class AnalizadorLexico {
     */
     System.exit(0);
     
-
+  yyclose();
     }
   }
 
@@ -893,7 +893,7 @@ class AnalizadorLexico {
    * @return      the next token
    * @exception   java.io.IOException  if any I/O-Error occurs
    */
-  public String yylex() throws java.io.IOException {
+  public String next_token() throws java.io.IOException {
     int zzInput;
     int zzAction;
 
@@ -1030,7 +1030,7 @@ class AnalizadorLexico {
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
             zzDoEOF();
-        return null;
+          { return new java_cup.runtime.Symbol(sym.EOF); }
       }
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {

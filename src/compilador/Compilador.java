@@ -62,7 +62,7 @@ public class Compilador {
 
                             archivo = new FileReader(pop);
                             AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
-                            AnalizadorSintactico parser = new AnalizadorSintactico((Scanner) analizadorLexico);
+                            AnalizadorSintactico parser = new AnalizadorSintactico(analizadorLexico);
                             parser.parse();
                             //parser.arbolSintactico.recorrerArbol();
                             //analizadorLexico.yylex();

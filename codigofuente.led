@@ -1,5 +1,3 @@
-hola.led
-
 FUNCION NUMERO esImpar (numero):
 variables:
     numero a;

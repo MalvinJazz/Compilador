@@ -15,6 +15,8 @@ import java_cup.runtime.Symbol;
 %unicode
 %line
 %column
+%char
+%cup
 
 %type String
 
