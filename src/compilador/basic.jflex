@@ -91,9 +91,12 @@ import java.util.ArrayList;
 
 ArchivoNombre = {Identificador}({KeyL}[a-zA-Z\-0-9]*{KeyR})?\*?\.{Identificador}
 
+
 Decimal = [1-9][0-9]* | 0
 Identificador = [a-zA-Z][a-zA-Z0-9_]*
 
+Extension = "led"
+Directiva = {Identificador}\.{Extension}
 
 
 //Gramaticales
@@ -118,6 +121,10 @@ KeyL = "["
 KeyR = "]"
 MayorQ= ">"
 MenorQ = "<"
+IgualIgual = "=="
+MayorIgual = ">=" 
+MenorIgual = "<="
+ConditionSym = {MayorQ} | {MenorQ} | {IgualIgual} | {MayorIgual} | {MenorIgual}
 
 //Preprocesador
 TokenInclude = "INCLUIR"|"incluir"
@@ -168,6 +175,19 @@ TokenInc = "INCREMENTAR" | "incrementar"
 TokenDec = "DECREMENTAR" | "decrementar"
 TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {TokenMod} | {TokenExp}
 
+
+TokenAns = "?"
+
+//OperadoresEstadistica
+TokenSu = "suma"
+TokenR = "resta"
+TokenPromedio = "promedio"
+TokenModa = "moda"
+TokenMedia = "media"
+TokenMa = "mayor"
+TokenMe = "menor"
+TokenConcatenar = "concatenar"
+TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {TokenMedia} | {TokenMa} | {TokenMe} | {TokenConcatenar} 
 
 
 %xstates ExTipo 
@@ -406,7 +426,13 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
                     }
-
+{ConditionSym}      {
+                        tokenList.add("Conditional#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Condicional : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                    }
 {MayorQ}            {
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
@@ -418,6 +444,13 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Simbolo menor que : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                    }
+{IgualIgual}            {
+                        tokenList.add("Relacional#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Relacional : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
                     }
@@ -458,6 +491,13 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
                     }
+{TokenAns}          {
+                        tokenList.add("ForAll#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "ForAll : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                    }
 
 {Identificador}     {
                         boolean x = false;
@@ -493,6 +533,20 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
                             System.out.println(compilado);
                         }
                     }
+{TokenEstadistica}         {
+                        tokenList.add("Estadistica#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Estadistica : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                    }
+{Directiva}         {
+                        tokenList.add("Directiva#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Directiva : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                    }
 {ArchivoNombre}     {
                         tokenList.add("File#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
@@ -501,6 +555,7 @@ TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {Token
                         System.out.println(compilado);
                         
                     }
+
 \r|\n|\r\n          {}
 {TokenEspacio}      {}
 .                   {

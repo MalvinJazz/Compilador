@@ -23,7 +23,7 @@ funcion numero hola_mundo():
     abrir archivo_unitario;
     // extrayendo información de celda 3,4 de la primera hoja de excel
     // como número
-    a = archivo_unitario[3,4];
+    a = archivo_unitario[?,4];
     // extrayendo información de celda 3,4 de la segunda hoja de excel
     // como cadena de texto
     nombre = archivo_unitario[2,3,4];
@@ -88,4 +88,5 @@ funcion numero principal():
     // obteniendo el resultado de hola_mundo()
     suma = hola_mundo();
     escribir "la suma es: ", suma;
+    escribir "gato bajo la lluvia";
     retornar 0;
