@@ -22,13 +22,18 @@ init with {:
     arbolSintactico = new Arbol();
 :};
 
-terminal ASIGNACION, COMAS, PUNTO, OPERACION, TMOD, TEXP, PARENTESISI, PARENTESISD, CORI, CORD, CONDITIONSYM, MAYQ, MENQ, RELACIONAL, FINLINEA, COMILLAS, DOSPUNTOS, IDENTACION, ANS, ESTADISTICA;
-terminal token FUNCION, TDECIMAL, SALIDA, TIPODATO, RETORNO, ENCVAR, ENCCOD, ENCFILE, TPRINT, TOPEN, TIF, TTHEN, TELSE, TFOR, TWHILE, ITERAR, TFOREACH, TAND, TOR, INCREMENTAR, DECREMENTAR, ID, DIRECTIVA, NAMEARCHIVO;
+terminal FUNCION, ASIGNACION, SALIDA, TIPODATO, RETORNO, ENCVAR, ENCCOD, ENCFILE, TFOR, 
+                  TWHILE, ITERAR, TFOREACH, TAND, TOR, INCREMENTAR, DECREMENTAR, TPRINT, 
+                  TOPEN, TIF, TTHEN, TELSE, COMAS, PUNTO, OPERACION, TMOD, TEXP, PARENTESISI, 
+                  PARENTESISD, CORI, CORD, CONDITIONSYM, MAYQ, MENQ, RELACIONAL, FINLINEA, 
+                  COMILLAS, DOSPUNTOS, IDENTACION, ANS, ESTADISTICA, ARITMETICA, TINCLUDE, SALTOLINEA;
 
-non terminal expr_list;
-non terminal Nodo expr, expr_part;
+terminal token TDECIMAL, ID, DIRECTIVA, NAMEARCHIVO;
 
-precedence left SUMA, RESTA;
+non terminal expr_list, variable, dec_var;
+non terminal Nodo expr, expr_part, exp_parametros, exp_cuerpo, name_archivos, seg_archivos, seg_codigo, seg_variables, exp_var;
+
+precedence left ARITMETICA;
 
 start with expr_list;
 
@@ -38,33 +43,121 @@ expr_list ::= expr_list expr_part:e {:
             | expr_part:e {:
                 parser.arbolSintactico.agregarHijo(e);
             :};
-expr_part ::= ID:id IGUAL expr:e {:
+expr_part ::= TINCLUDE DIRECTIVA:d {:
                 Nodo expresion = new Nodo(Nodo.TIPO_EXPRESION,0);
-                Nodo identificador = new Nodo(Nodo.TIPO_IDENTIFICADOR, id.getCadena());
-                Nodo igual = new Nodo(Nodo.TIPO_OPERADOR, Nodo.OP_IGUAL);
+                Nodo identificador = new Nodo(Nodo.TIPO_IDENTIFICADOR, d.getCadena());
                 expresion.agregarHijo(identificador);
-                expresion.agregarHijo(igual);
-                expresion.agregarHijo(e);
                 RESULT=expresion;
-            :} PCOMA
-            | DECLARA ID:id {:
+            :} FINLINEA SALTOLINEA
+            | FUNCION TIPODATO ID:id PARENTESISI exp_parametros:param PARENTESISD DOSPUNTOS exp_cuerpo:body expr_part{:
                 Nodo declaracion = new Nodo(Nodo.TIPO_DECLARACION,5);
+                Nodo identificador = new Nodo(Nodo.TIPO_IDENTIFICADOR, id.getCadena());
+                Nodo parenI = new Nodo(Nodo.TIPO_COMPLEMENTO,6);
+                Nodo parenD = new Nodo(Nodo.TIPO_COMPLEMENTO,6);
+                Nodo DosP = new Nodo(Nodo.TIPO_COMPLEMENTO,6);
+                declaracion.agregarHijo(identificador);
+                declaracion.agregarHijo(parenI);
+                declaracion.agregarHijo(param);
+                declaracion.agregarHijo(parenD);
+                declaracion.agregarHijo(DosP);
+                declaracion.agregarHijo(body);
+                RESULT=declaracion;
+            :} FINLINEA SALTOLINEA
+            | FUNCION TIPODATO ID:id PARENTESISI PARENTESISD DOSPUNTOS exp_cuerpo:body expr_part{:
+                Nodo declaracion = new Nodo(Nodo.TIPO_DECLARACION,5);
+                Nodo identificador = new Nodo(Nodo.TIPO_IDENTIFICADOR, id.getCadena());
+                Nodo parenI = new Nodo(Nodo.TIPO_COMPLEMENTO,6);
+                Nodo parenD = new Nodo(Nodo.TIPO_COMPLEMENTO,6);
+                Nodo DosP = new Nodo(Nodo.TIPO_COMPLEMENTO,6);
+                declaracion.agregarHijo(identificador);
+                declaracion.agregarHijo(parenI);
+                declaracion.agregarHijo(parenD);
+                declaracion.agregarHijo(DosP);
+                declaracion.agregarHijo(body);
+                RESULT=declaracion;
+            :} FINLINEA SALTOLINEA;
+
+
+exp_parametros ::= TIPODATO ID:id {:
+                Nodo declaracion = new Nodo(Nodo.TIPO_DATOS,6);
                 Nodo identificador = new Nodo(Nodo.TIPO_IDENTIFICADOR, id.getCadena());
                 declaracion.agregarHijo(identificador);
                 RESULT=declaracion;
-            :} PCOMA;
-            
-expr ::=  DECIMAL:d {: RESULT=new Nodo(d.getEntero()); :}
-        | ID:id {: RESULT=new Nodo(Nodo.TIPO_IDENTIFICADOR, id.getCadena()); :}
-        |expr:l SUMA expr:r {: 
-            Nodo raiz = new Nodo(Nodo.TIPO_OPERADOR, Nodo.OP_SUMA);
-            raiz.agregarHijo(l);
-            raiz.agregarHijo(r);
-            RESULT=raiz; 
-        :}
-        |expr:l RESTA expr:r {: 
-            Nodo raiz = new Nodo(Nodo.TIPO_OPERADOR, Nodo.OP_RESTA);
-            raiz.agregarHijo(l);
-            raiz.agregarHijo(r);
-            RESULT=raiz;
-         :};
+            :} FINLINEA SALTOLINEA
+            | TIPODATO ID:id exp_parametros{:
+                Nodo declaracion = new Nodo(Nodo.TIPO_DATOS,6);
+                Nodo identificador = new Nodo(Nodo.TIPO_IDENTIFICADOR, id.getCadena());
+                declaracion.agregarHijo(identificador);
+                RESULT=declaracion;
+            :} FINLINEA SALTOLINEA;
+
+
+exp_cuerpo ::= seg_archivos:s seg_variables:v seg_codigo:cod {:
+                
+            :} FINLINEA SALTOLINEA;
+
+
+seg_archivos ::= IDENTACION ENCFILE DOSPUNTOS name_archivos:archivos{:
+                Nodo segmento = new Nodo(Nodo.TIPO_EXPRESION,1);
+                Nodo uno = new Nodo(Nodo.TIPO_COMPLEMENTO,7);
+                Nodo dos = new Nodo(Nodo.TIPO_EXPRESION,1);
+                Nodo tres = new Nodo(Nodo.TIPO_COMPLEMENTO,7);
+                segmento.agregarHijo(uno);
+                segmento.agregarHijo(dos);
+                segmento.agregarHijo(tres);
+                segmento.agregarHijo(archivos);
+                RESULT = segmento;
+            :} FINLINEA SALTOLINEA;
+
+
+seg_variables ::= 
+                IDENTACION ENCVAR DOSPUNTOS dec_var:variable{:
+                    Nodo padre = new Nodo(Nodo.TIPO_EXPRESION,1);
+                    Nodo uno = new Nodo(Nodo.TIPO_COMPLEMENTO,7);
+                    Nodo dos = new Nodo(Nodo.TIPO_EXPRESION,1);
+                    Nodo tres = new Nodo(Nodo.TIPO_COMPLEMENTO,7);
+                    padre.agregarHijo(uno);
+                    padre.agregarHijo(dos);
+                    padre.agregarHijo(tres);
+                    padre.agregarHijo(variable);
+                    RESULT = padre;
+                :};
+
+
+dec_var ::=         IDENTACION IDENTACION TIPODATO ID:id exp_var:variable{:
+                    Nodo padre = new Nodo(Nodo.TIPO_EXPRESION,1);
+                    Nodo uno = new Nodo(Nodo.TIPO_COMPLEMENTO,7);
+                    Nodo dos = new Nodo(Nodo.TIPO_COMPLEMENTO,7);
+                    Nodo tres = new Nodo(Nodo.TIPO_COMPLEMENTO,7);
+                    Nodo cuatro = new Nodo(Nodo.TIPO_COMPLEMENTO,id.getCadena());
+                    padre.agregarHijo(uno);
+                    padre.agregarHijo(dos);
+                    padre.agregarHijo(tres);
+                    padre.agregarHijo(cuatro);
+                    padre.agregarHijo(variable);
+                    RESULT = padre;
+                :} FINLINEA SALTOLINEA;
+
+exp_var ::= 
+                ID: id {:
+                    Nodo padre = new Nodo(Nodo.TIPO_DECLARACION, id.getCadena());
+                    RESULT = padre;
+                :} FINLINEA SALTOLINEA
+                    | ID:id COMAS exp_var:variable {:
+                    Nodo padrevar = new Nodo(Nodo.TIPO_DECLARACION,id.getCadena());
+                    padrevar.agregarHijo(variable);
+                    RESULT = padrevar;
+                :} FINLINEA SALTOLINEA;
+
+seg_codigo ::= 
+                IDENTACION ENVCCOD DOSPUNTOS exp_cod:code{:
+                    Nodo padre = new Nodo(Nodo.TIPO_EXPRESION,1);
+                    Nodo uno = new Nodo(Nodo.TIPO_COMPLEMENTO,7);
+                    Nodo dos = new Nodo(Nodo.TIPO_EXPRESION,1);
+                    Nodo tres = new Nodo(Nodo.TIPO_COMPLEMENTO,7);
+                    padre.agregarHijo(uno);
+                    padre.agregarHijo(dos);
+                    padre.agregarHijo(tres);
+                    padre.agregarHijo(variable);
+                    RESULT = padre;
+                :} FINLINEA SALTOLINEA;

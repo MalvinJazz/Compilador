@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
+import java_cup.runtime.Symbol;
 
 
 %%
@@ -173,8 +174,8 @@ TokenMod = "%"
 TokenExp = "^"
 TokenInc = "INCREMENTAR" | "incrementar"
 TokenDec = "DECREMENTAR" | "decrementar"
-TokenOperacion = {TokenSuma} | {TokenResta} | {TokenMulti} | {TokenDiv} | {TokenMod} | {TokenExp}
-
+TokenOperacion =  {TokenMulti} | {TokenDiv} | {TokenMod} | {TokenExp}
+TokenAritmetica = {TokenSuma} | {TokenResta}
 
 TokenAns = "?"
 
@@ -208,320 +209,377 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
 
 
 {TokenFunction}     {
-                        return new Symbol(sym.FUNCION,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Function#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Declaracion de Funcion : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.FUNCION,new token(yycolumn, yyline, yytext()));
                     }
 {Decimal}           {
-                        return new Symbol(sym.TDECIMAL,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Number#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Numero : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TDECIMAL,new token(yycolumn, yyline, yytext()));
                     }
 {TokenSout}         {
-                        return new Symbol(sym.SALIDA,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("SystemPrint#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Salida de sistema: " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.SALIDA,new token(yycolumn, yyline, yytext()));
                     }
 {TokenTipos}        {
-                        return new Symbol(sym.TIPODATO,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Type#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Tipo de dato : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TIPODATO,new token(yycolumn, yyline, yytext()));
                     }
 {TokenReturn}       {
-                        return new Symbol(sym.RETORNO,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Return#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Return : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.RETORNO,new token(yycolumn, yyline, yytext()));
                     }
 {TokenEVariables}   {
-                        return new Symbol(sym.ENCVAR,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Header#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Encabezado de variables : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.ENCVAR,new token(yycolumn, yyline, yytext()));
                     }
 {TokenECodigo}      {
-                        return new Symbol(sym.ENCCOD,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Header#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Encabezado de codigo : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.ENCCOD,new token(yycolumn, yyline, yytext()));
                     }
 {TokenEFile}        {
-                        return new Symbol(sym.ENCFILE,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Header#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Encabezado de archivo : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.ENCFILE,new token(yycolumn, yyline, yytext()));
                     }
 {TokenPrint}        {
-                        return new Symbol(sym.TPRINT,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("SystemPrint#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Escribir en pantalla : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TPRINT,new token(yycolumn, yyline, yytext()));
                     }
 {TokenOpen}         {
-                        return new Symbol(sym.TOPEN,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Instruction#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Abrir archivo : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TOPEN,new token(yycolumn, yyline, yytext()));
                     }
 {TokenIf}           {
-                        return new Symbol(sym.TIF,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Condicion : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TIF,new token(yycolumn, yyline, yytext()));
                     }
 {TokenThen}         {
-                        return new Symbol(sym.TTHEN,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Condicion : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TTHEN,new token(yycolumn, yyline, yytext()));
                     }
 {TokenElse}         {
-                        return new Symbol(sym.TELSE,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Condicion : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TELSE,new token(yycolumn, yyline, yytext()));
                     }
 {TokenFor}          {
-                        return new Symbol(sym.TFOR,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Ciclo : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TFOR,new token(yycolumn, yyline, yytext()));
                     }
 {TokenWhile}        {
-                        return new Symbol(sym.TWHILE,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Ciclo : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TWHILE,new token(yycolumn, yyline, yytext()));
                     }
 {TokenIterar}       {
-                        return new Symbol(sym.ITERAR,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Ciclo : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.ITERAR,new token(yycolumn, yyline, yytext()));
                     }
 {TokenParaCada}     {
-                        return new Symbol(sym.TFOREACH,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Statement#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Foreach : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TFOREACH,new token(yycolumn, yyline, yytext()));
                     }
 {TokenAnd}          {
-                        return new Symbol(sym.TAND,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("LogicalOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Operador Logico : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TAND,new token(yycolumn, yyline, yytext()));
                     }
 {TokenOr}           {
-                        return new Symbol(sym.TOR,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("LogicalOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Operador Logico : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TOR,new token(yycolumn, yyline, yytext()));
                     }
 {TokenAsignacion}   {
-                        return new Symbol(sym.ASIGNACION,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Asignacion : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.ASIGNACION,new token(yycolumn, yyline, yytext()));
                     }
 {TokenComas}        {
-                        return new Symbol(sym.COMAS,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Comas : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.COMAS,new token(yycolumn, yyline, yytext()));
                     }
 {TokenPunto}        {
-                        return new Symbol(sym.PUNTO,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Punto : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.PUNTO,new token(yycolumn, yyline, yytext()));
+                    }
+{TokenAritmetica}    {
+                        
+                        tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Operacion basica aritmetica: " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                        return new Symbol(sym.ARITMETICA,new token(yycolumn, yyline, yytext()));
                     }
 {TokenOperacion}    {
-                        return new Symbol(sym.OPERACION,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Operacion basica : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.OPERACION,new token(yycolumn, yyline, yytext()));
                     }
 {TokenMod}          {
-                        return new Symbol(sym.TMOD,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Modulo : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TMOD,new token(yycolumn, yyline, yytext()));
                     }
 {TokenExp}          {
-                        return new Symbol(sym.TEXP,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Exponente : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.TEXP,new token(yycolumn, yyline, yytext()));
                     }
 {TokenInc}          {
-                        return new Symbol(sym.INCREMENTAR,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Incrementar en uno : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.INCREMENTAR,new token(yycolumn, yyline, yytext()));
                     }
 {TokenDec}          {
-                        return new Symbol(sym.DECREMENTAR,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("ArithmeticOperator#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Decrementar en uno : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.DECREMENTAR,new token(yycolumn, yyline, yytext()));
                     }
 {ParenL}            {
-                        return new Symbol(sym.PARENTESISI,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Apertura de parentesis : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.PARENTESISI,new token(yycolumn, yyline, yytext()));
                     }
 {ParenR}            {
-                        return new Symbol(sym.PARENTESISD,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Clausura de parentesis : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.PARENTESISD,new token(yycolumn, yyline, yytext()));
                     }
 
 
 {KeyL}            {
-                        return new Symbol(sym.CORI,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Apertura de corchete : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.CORI,new token(yycolumn, yyline, yytext()));
+                    }
+{TokenInclude}            {
+                        
+                        tokenList.add("Include#" + yytext() + "#" + yyline + "#" + yycolumn );
+                        addToTable();
+                        String compilado = "Preprocesador : " + yytext();
+                        compiladoSalida.add(compilado);
+                        System.out.println(compilado);
+                        return new Symbol(sym.TINCLUDE,new token(yycolumn, yyline, yytext()));
                     }
 {KeyR}            {
-                        return new Symbol(sym.CORD,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Clausura de corchete : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.CORD,new token(yycolumn, yyline, yytext()));
                     }
 {ConditionSym}      {
-                        return new Symbol(sym.CONDITIONSYM,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Conditional#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Condicional : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.CONDITIONSYM,new token(yycolumn, yyline, yytext()));
                     }
 {MayorQ}            {
-                        return new Symbol(sym.MAYQ,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Simbolo mayor que : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.MAYQ,new token(yycolumn, yyline, yytext()));
                     }
 {MenorQ}            {
-                        return new Symbol(sym.MENQ,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Simbolo menor que : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.MENQ,new token(yycolumn, yyline, yytext()));
                     }
 {IgualIgual}            {
-                        return new Symbol(sym.RELACIONAL,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Relacional#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Relacional : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.RELACIONAL,new token(yycolumn, yyline, yytext()));
                     }
 
 {TokenFinLinea}     {
-                        return new Symbol(sym.FINLINEA,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Fin de linea : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.FINLINEA,new token(yycolumn, yyline, yytext()));
                     }
 {TokenComillas}     {
-                        return new Symbol(sym.COMILLAS,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Comillas : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.COMILLAS,new token(yycolumn, yyline, yytext()));
                     }
 {TokenDosPuntos}    {
-                        return new Symbol(sym.DOSPUNTOS,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Symbol#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Dos Puntos : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.DOSPUNTOS,new token(yycolumn, yyline, yytext()));
                     }
 
 {TokenIdentacion}   {
-                        return new Symbol(sym.IDENTACION,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Indention#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Identacion : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.IDENTACION,new token(yycolumn, yyline, yytext()));
                     }
 {TokenComentarios}  {
                         tokenList.add("Comment#" + yytext() + "#" + yyline + "#" + yycolumn );
@@ -531,12 +589,13 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                         System.out.println(compilado);
                     }
 {TokenAns}          {
-                        return new Symbol(sym.ANS,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("ForAll#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "ForAll : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.ANS,new token(yycolumn, yyline, yytext()));
                     }
 
 {Identificador}     {
@@ -556,52 +615,57 @@ TokenEstadistica = {TokenSu} | {TokenR} | {TokenPromedio} | {TokenModa} | {Token
                             }
                             else
                             {
-                                return new Symbol(sym.ID,new token(yycolumn, yyline, yytext()));
+                                
                                 tokenList.add("Identifier#" + yytext() + "#" + yyline + "#" + yycolumn );
                                 addToTable();
                                 String compilado = "Identificador : " + yytext();
                                 compiladoSalida.add(compilado);
                                 System.out.println(compilado);
+                                return new Symbol(sym.ID,new token(yycolumn, yyline, yytext()));
                             }
                                                
                         }
                         else
                         {
-                            return new Symbol(sym.ID,new token(yycolumn, yyline, yytext()));
+                            
                             tokenList.add("Identifier#" + yytext() + "#" + yyline + "#" + yycolumn );
                             addToTable();
                             String compilado = "Identificador : " + yytext();
                             compiladoSalida.add(compilado);
                             System.out.println(compilado);
+                            return new Symbol(sym.ID,new token(yycolumn, yyline, yytext()));
                         }
                     }
 {TokenEstadistica}         {
-                        return new Symbol(sym.ESTADISTICA,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Estadistica#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Estadistica : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.ESTADISTICA,new token(yycolumn, yyline, yytext()));
                     }
 {Directiva}         {
-                        return new Symbol(sym.DIRECTIVA,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("Directiva#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Directiva : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.DIRECTIVA,new token(yycolumn, yyline, yytext()));
                     }
 {ArchivoNombre}     {
-                        return new Symbol(sym.NAMEARCHIVO,new token(yycolumn, yyline, yytext()));
+                        
                         tokenList.add("File#" + yytext() + "#" + yyline + "#" + yycolumn );
                         addToTable();
                         String compilado = "Archivo : " + yytext();
                         compiladoSalida.add(compilado);
                         System.out.println(compilado);
+                        return new Symbol(sym.NAMEARCHIVO,new token(yycolumn, yyline, yytext()));
                         
                     }
 
-\r|\n|\r\n          {}
+\r|\n|\r\n          {return new Symbol(sym.SALTOLINEA,new token(yycolumn, yyline, yytext()));}
 {TokenEspacio}      {}
 .                   {
                           throw new Error("A lexical error, it could be an invalid or unacceptable character by the language at: " + yyline + "," + yycolumn + " ..: " + yytext());  

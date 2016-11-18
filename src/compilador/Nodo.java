@@ -41,6 +41,8 @@ public class Nodo {
     public static final int TIPO_OPERADOR=3;
     public static final int TIPO_IDENTIFICADOR=4;
     public static final int TIPO_DECLARACION = 5;
+    public static final int TIPO_DATOS = 6;
+    public static final int TIPO_COMPLEMENTO = 7;
     
     public static final int OP_SUMA = 10;
     public static final int OP_RESTA = 11;
@@ -68,6 +70,10 @@ public class Nodo {
                 break;
             case Nodo.TIPO_DECLARACION:
                 break;
+            case Nodo.TIPO_DATOS:
+                break;
+            case Nodo.TIPO_COMPLEMENTO:
+                break;
         }
     }
     
@@ -83,6 +89,8 @@ public class Nodo {
             case Nodo.TIPO_EXPRESION:
             case Nodo.TIPO_NUMERO:
             case Nodo.TIPO_DECLARACION:
+            case Nodo.TIPO_DATOS:
+            case Nodo.TIPO_COMPLEMENTO:
             case Nodo.TIPO_OPERADOR:
                 break;
             case Nodo.TIPO_IDENTIFICADOR:
