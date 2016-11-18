@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java_cup.runtime.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -57,13 +58,13 @@ public class Compilador {
                     
                     if(!argumentos.isEmpty()){
                         String pop = argumentos.pop();
-                    
                         if(pop.toLowerCase().endsWith(".led")){
 
                             archivo = new FileReader(pop);
                             AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
                             AnalizadorSintactico parser = new AnalizadorSintactico((Scanner) analizadorLexico);
                             parser.parse();
+                            //parser.arbolSintactico.recorrerArbol();
                             //analizadorLexico.yylex();
                             tokens = AnalizadorLexico.getTokenList();
                             archivo.close();
