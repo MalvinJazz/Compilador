@@ -893,7 +893,7 @@ class AnalizadorLexico {
    * @return      the next token
    * @exception   java.io.IOException  if any I/O-Error occurs
    */
-  public String yylex() throws java.io.IOException {
+  public Symbol yylex() throws java.io.IOException {
     int zzInput;
     int zzAction;
 

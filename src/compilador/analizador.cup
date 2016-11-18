@@ -30,8 +30,8 @@ terminal FUNCION, ASIGNACION, SALIDA, TIPODATO, RETORNO, ENCVAR, ENCCOD, ENCFILE
 
 terminal token TDECIMAL, ID, DIRECTIVA, NAMEARCHIVO;
 
-non terminal expr_list, variable, dec_var, exp_cod, exp_asig, exp_op, exp_acceso, exp_open, exp_write, exp_call, exp_return;
-non terminal Nodo expr, expr_part, exp_parametros, exp_cuerpo, name_archivos, seg_archivos, seg_codigo, seg_variables, exp_var;
+non terminal expr_list, variable, dec_var, exp_cod, exp_asig, exp_op, exp_acceso, exp_open, exp_write, exp_call, exp_return, exp_celdas;
+non terminal Nodo expr, expr_part, exp_parametros, exp_cuerpo, name_archivos, seg_archivos, seg_codigo, seg_variables, exp_var, exp_vars, sout_system;
 
 precedence left ARITMETICA;
 
@@ -211,3 +211,84 @@ exp_cod ::= exp_asig:e FINLINEA SALTOLINEA exp_cod:codeline {:
             RESULT = principal;
     :} ;
 
+
+    exp_asig ::= ID:id ASIGNACION exp_op:ope {:
+            Nodo raiz = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            Nodo a = new Nodo(Nodo.TIPO_DECLARACION, id.getCadena());
+            raiz.agregarHijo(a);
+            raiz.agregarHijo((Nodo)ope);
+            RESULT = raiz;
+    :} FINLINEA SALTOLINEA 
+     | ID:id ASIGNACION exp_vars:var {: 
+            Nodo raiz = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            Nodo a = new Nodo(Nodo.TIPO_DECLARACION, id.getCadena());
+            raiz.agregarHijo(a);
+            raiz.agregarHijo((Nodo)var);
+            RESULT = raiz;
+     :};
+
+     
+    exp_acceso ::= ID:id CORI exp_celdas:cel CORD {: 
+                Nodo raiz = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+                Nodo a = new Nodo(Nodo.TIPO_DECLARACION, id.getCadena());
+                Nodo corchI = new Nodo(Nodo.TIPO_COMPLEMENTO,1);
+                Nodo corchD = new Nodo(Nodo.TIPO_COMPLEMENTO,1);
+                raiz.agregarHijo(a);
+                raiz.agregarHijo(corchI);
+                raiz.agregarHijo(corchD);
+                raiz.agregarHijo((Nodo)cel);
+                RESULT = raiz;
+            :} FINLINEA SALTOLINEA;
+
+
+     exp_open ::= TOPEN ID:id {:
+                Nodo raiz = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+                Nodo abrir = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+                Nodo a = new Nodo(Nodo.TIPO_DECLARACION, id.getCadena());
+                raiz.agregarHijo(abrir);
+                raiz.agregarHijo(a);
+                RESULT = raiz;
+     :} FINLINEA SALTOLINEA;
+
+     
+     exp_write ::= TPRINT SALIDA sout_system:e {:
+            Nodo raiz = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            Nodo printf = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            Nodo sout = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            raiz.agregarHijo(printf);
+            raiz.agregarHijo(sout);
+            raiz.agregarHijo((Nodo)e);
+            RESULT = raiz;
+        :} FINLINEA SALTOLINEA
+        | TPRINT SALIDA {:
+            Nodo raiz = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            Nodo printf = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            Nodo sout = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            raiz.agregarHijo(printf);
+            raiz.agregarHijo(sout);
+            RESULT = raiz;
+        :} FINLINEA SALTOLINEA;
+
+     sout_system ::= exp_vars:variable {:
+            Nodo raiz = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            Nodo variablex = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            raiz.agregarHijo(variablex);
+            RESULT = raiz;
+        :} FINLINEA SALTOLINEA | exp_vars:variable COMAS sout_system:s {:
+            Nodo raiz = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            Nodo variablex = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+            raiz.agregarHijo(variablex);
+            RESULT = raiz;
+        :} FINLINEA SALTOLINEA;
+
+     exp_vars ::= ID:id {:
+                Nodo raiz = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+                Nodo variable = new Nodo(Nodo.TIPO_COMPLEMENTO, id.getCadena());
+                raiz.agregarHijo(variable);
+                RESULT = raiz;
+        :} FINLINEA SALTOLINEA | TDECIMAL:dec {:
+                Nodo raiz = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+                Nodo variablex = new Nodo(Nodo.TIPO_COMPLEMENTO, 1);
+                raiz.agregarHijo(variablex);
+                RESULT = raiz;
+        :} FINLINEA SALTOLINEA;
