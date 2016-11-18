@@ -1,0 +1,91 @@
+/* área de carga de otras funciones */
+incluir "funciones.led"
+
+
+funcion numero hola_mundo():
+  archivos:
+    archivo_unitario reporte1.xslx;
+    archivos_clientes reportesClientes*.xslx, hojaLibreOffice.ods;
+    archivos_varios reporteA.xslx,reporteB.xslx,reporteD.xslx;
+    archivos_varios2 reporte[a-d].xslx;
+
+  variables:
+    numero a, contador;
+    cadena nombre;
+
+  codigo:
+    a = 0;
+    nombre = "";
+
+    escribir "abriendo archivo de excel";
+    // se guarda una cadena de texto en la variable nombre
+    escribir "extrayendo reporte";
+    abrir archivo_unitario;
+    // extrayendo información de celda 3,4 de la primera hoja de excel
+    // como número
+    a = archivo_unitario[3,4];
+    // extrayendo información de celda 3,4 de la segunda hoja de excel
+    // como cadena de texto
+    nombre = archivo_unitario[2,3,4];
+    // se guarda un numero en la variable nombre
+    escribir "el nombre encontrado es: ", nombre;
+
+    /*
+     escribe en pantalla la constante junto
+      al valor de la variable a
+     */
+    escribir "el número encontrado es: ", a;
+    si ( esImpar(a) ) entonces:
+      escribir "El numero que se encontró es impar";
+    sino:
+      escribir "El numero que se econtró no es par";
+
+    //accediendo a archivos multiples
+    abrir archivos_clientes;
+    a = 0;
+
+    // ejemplos de operaciones básicas de datos obtenidos
+    a = a + archivos_clientes[3,4].suma;
+    a = a + archivos_clientes[3,4].resta;
+    a = a + archivos_clientes[3,4].promedo;
+    a = a + archivos_clientes[3,4].moda;
+    a = a + archivos_clientes[3,4].media;
+    a = a + archivos_clientes[3,4].mayor;
+    a = a + archivos_clientes[3,4].menor;
+
+    // uso con ciclos y variables con un solo archivo
+    desde ( contador = 1 mientras contador < 10 incrementar 1) iterar:
+      // solo se busca en la fila 1 y se itera en la columna
+      si ( archivo_unitario[1,contador] == "Total" ) entonces:
+        // si la celda tiene la palabra "Total" entonces
+        // se imprime la siguiente columna
+        escribir "el total es ", archivo_unitario[1,contador+1];
+
+    // uso de ciclos con multiples archivos
+    abrir archivos_varios;
+
+    // iterando en cada archivo en la lista de archivos archivos_varios
+    paracada ( archivo en archivos_varios  ) iterar:
+      // el código de acá se ejecuta por cada archivo, por lo que
+      // ahora se puede obtener información como si fuese
+      // un solo archivo
+      si (archivo[1,5] == 10) entonces:
+        escribir "en el archivo ", archivo, " he encontrado un número 10";
+
+      // iterando dentro de cada archivo
+      desde ( contador = 1 mientras contador < 10 incrementar 1 ) iterar:
+        si ( archivo[2,contador] == "Total" ) entonces:
+          escribir "Total en ", archivo, " es:" archivo[2,contador+1];
+
+    // la funcion devuelve un valor
+    retornar a;
+
+/* área de declaración de función de carga inicial */
+funcion numero principal():
+  variables:
+    //numero suma;
+  codigo:
+    // obteniendo el resultado de hola_mundo()
+    suma = hola_mundo();
+    escribir "la suma es: ", suma;
+    retornar 0;

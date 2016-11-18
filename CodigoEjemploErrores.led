@@ -1,0 +1,42 @@
+/* área de carga de otras funciones */
+incluir "funcio"
+
+/* área de declaración de clases */
+funcion numero esImpar(numero num):
+codigo:
+ ( num % 2 ) entonces:
+retornar 1;
+ sino:
+      retornar 0;
+  codigo:
+    a = 0;
+    nombre = "";
+    
+    escribir "abriendo archivo de excel;
+    // se guarda una cadena de texto en la variable nombre
+    escribir "extrayendo reporte"
+    abrir archivo_unitario
+    // extrayendo información de celda 3,4 de la primera hoja de excel 
+    // como número
+    a = archivo_unitario[3,4];
+    // extrayendo información de celda 3,4 de la segunda hoja de excel
+    // como cadena de texto
+    nombre = archivo_unitario[2,3,4];
+    // se guarda un numero en la variable nombre
+    escribir "el nombre encontrado es: ", nombre;
+    
+/* área de declaración de función de carga inicial */
+funcio numero principal
+  variables:
+    numero suma;
+    boleano a;
+    entero si;
+    entero $ad;
+    variable: 
+       entero a;
+       numero b;
+  codigo:
+    // obteniendo el resultado de hola_mundo()
+    suma = hola_mundo();
+    escribir "la suma es: ", suma;
+    retornar 0;
