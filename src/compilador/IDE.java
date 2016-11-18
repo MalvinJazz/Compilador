@@ -17,12 +17,18 @@
 package compilador;
 
 import static compilador.Compilador.tokens;
+import excepciones.ArchivoInvalido;
+import excepciones.DatoInvalido;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextArea;
+import lector_excel.Libro;
 
 /**
  *
@@ -55,6 +61,7 @@ public class IDE extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
@@ -86,6 +93,13 @@ public class IDE extends javax.swing.JFrame {
 
         jTextField1.setText("archivo1.led");
 
+        jButton3.setText("Excel");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,7 +113,9 @@ public class IDE extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3))
                     .addComponent(jScrollPane1))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -110,7 +126,8 @@ public class IDE extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -186,13 +203,17 @@ public class IDE extends javax.swing.JFrame {
             
             archivo = new FileReader(ruta);
             AnalizadorLexico analizadorLexico = new AnalizadorLexico(archivo);
-            analizadorLexico.yylex();
+            AnalizadorSintactico parser = new AnalizadorSintactico(analizadorLexico);
+            parser.parse();
+            //parser.arbolSintactico.recorrerArbol();
+            //analizadorLexico.yylex();
+            tokens = AnalizadorLexico.getTokenList();
       //      tokens = AnalizadorLexico.getTokenList();
             archivo.close();
             
-            //for (String token : tokens) {
-              //  jTextArea2.append(token);
-            //}
+            for (String token : tokens) {
+                jTextArea2.append(token);
+            }
             
             jTextArea2.append("Compilado sin ningun error.");
             
@@ -210,6 +231,32 @@ public class IDE extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        try {
+            // TODO add your handling code here:
+
+            Libro excel = new Libro("excel.ods");
+            
+            jTextArea2.append(excel.get_celda("0", "0")+"\n");
+            jTextArea2.append(excel.get_celda(1, 1, 1)+"\n");
+            jTextArea2.append(excel.concatenar(1, 0)+"\n");
+            jTextArea2.append(excel.get_promedio(2, 2)+"\n");
+            jTextArea2.append(excel.get_max(2, 2)+"\n");
+            jTextArea2.append(excel.get_min(2, 2)+"\n");
+            jTextArea2.append(excel.get_moda(2, 2)+"\n");
+            jTextArea2.append(excel.get_resta(2, 2)+"\n");
+            jTextArea2.append(excel.get_suma(2, 2)+"\n");
+            
+        } catch (IOException ex) {
+            Logger.getLogger(IDE.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ArchivoInvalido ex) {
+            Logger.getLogger(IDE.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DatoInvalido ex) {
+            Logger.getLogger(IDE.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton3MouseClicked
 
     
     /**
@@ -251,6 +298,7 @@ public class IDE extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
